@@ -24,12 +24,12 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/VIEW INFO.png" height="50" /></a>
 
 ###### When you want to see a kit, you will get a list of the existing kits and clicking send will take you to a form where you can see the following information about the kit:
--Description
--Required tag
--Cooldown
--Price
--OnlyOnce
--ItemCount (The number of slots that the kit items occupy)
--Created At (When the kit was created)
+-Description <br>
+-Required tag <br>
+-Cooldown <br>
+-Price <br>
+-OnlyOnce <br>
+-ItemCount (The number of slots that the kit items occupy) <br>
+-Created At (When the kit was created) <br>
 
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" height="50" /></a>
