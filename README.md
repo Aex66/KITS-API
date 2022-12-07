@@ -9,7 +9,7 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/CREATE KIT.png" height="50" /></a>
 
 When creating a kit you have several options and settings, such as:
--Name
+-Name\n
 -Description
 -Required tag (The player must have a tag in order to claim the kit)
 -Cooldown (The player has to wait to claim the kit again) [ex: 2 days]
