@@ -41,7 +41,8 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 **Note: If you are an administrator, none of these limitations will bother you when you want to claim the kit.** <br>
 
 # FOR DEVS
-If you have some knowledge in javascript or typescript, I will show you how you can execute code when some KITS API event is fired
+## If you have some knowledge in javascript or typescript, I will show you how you can execute code when some KITS API event is fired
+
 
 ```ts
 /**
