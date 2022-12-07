@@ -19,7 +19,7 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/REMOVE KIT.png" height="50" /></a>
 
-###### When you want to delete a kit, you will have a list where you will choose one of the existing kits and then you will have to write the word "CONFIRM" to delete it. <br>
+###### This module will allow you to remove a kit from the database, to delete it you have to select it in the dropdown the kit you want to remove (all the current kits on the server will appear in the dropdown) and followed by this write "CONFIRM" in capital letters and without the quotes and the kit will be eliminated, if you write anything else nothing will happen, it will only return you to the form <br>
 
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/VIEW INFO.png" height="50" /></a>
 
