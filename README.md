@@ -15,7 +15,7 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 -Cooldown (The player has to wait to claim the kit again) [ex: 2 days] <br>
 -Price (The player has to pay for the kit) <br>
 -OnlyOnce (The kit can only be claimed once per player) <br>
-**The kit will take all the items in your inventory (Except for off-hand slots and armor slots).**
+**_The kit will take all the items in your inventory (Except for off-hand slots and armor slots)._**
 
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/REMOVE KIT.png" height="50" /></a>
 
