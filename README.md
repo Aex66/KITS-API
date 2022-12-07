@@ -43,6 +43,25 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 # FOR DEVS
 If you have some knowledge in javascript or typescript, I will show you how you can execute code when some KITS API event is fired
 
-<code>if</code>
+```ts
+/**
+ * KITS API EVENTS
+ */
+Script.on('kitCreated', (res) => {
+        //Fires when a kit is created
+})
+
+Script.on('kitDeleted', (res) => {
+        //Fires when a kit is deleted
+})
+
+Script.on('kitClaimed', (res) => {
+        //Fires when a kit is claimed
+})
+
+Script.on('kitPurchased', (res) => {
+        //Fires when a kit is purchased
+})
+```
 # MY SOCIAL NETWORKS
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" height="50" /></a>
