@@ -32,4 +32,13 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 -ItemCount (The number of slots that the kit items occupy) <br>
 -Created At (When the kit was created) <br>
 
+<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/VIEW INFO.png" height="50" /></a>
+###### In order to claim a kit, your server members will have to pass all limitations before they can claim it.
+-If the kit has "RequiredTag" the member must have the tag set for that kit, in order to claim it. <br>
+-If the kit has a "Cooldown", the player will be able to claim it but to be able to claim it again they will have to wait until the cooldown ends <br>
+-If the kit is set to be claimed once, once the player claims it they will not be able to claim it again
+-If the kit has a price, the player will have to have enough money to be able to claim it and it will be discounted, if he does not have enough money, nothing will be discounted and the kit will not be given to him <br>
+**Note: If you are an administrator, none of these limitations will bother you when you want to claim the kit.**
+
+# MY SOCIAL NETWORKS
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" height="50" /></a>
