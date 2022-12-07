@@ -1,0 +1,46 @@
+api.kits.closechat=§eチャットを閉じて KITS API フォームを開く
+api.kits.chattimeout=§c時間内にチャットを終了しなかったため、KITS API はフォームを表示できませんでした!
+
+api.kits.create.title=作成
+api.kits.create.components.reqTag.label=必須タグ
+api.kits.create.components.price.label=価格 ('0' は無料キットです)
+api.kits.create.components.price.placeholder=キット価格
+api.kits.create.components.onlyonce.label=1回のみ請求可能
+api.kits.create.components.default=§7アイテムの名前やフォームのフィールドに特殊文字を使用しないでください§f(§3オフハンドスロットとアーマースロットを除いて、インベントリ内のすべてのアイテムがキットに追加されます§f)
+api.kits.create.components.name.placeholder=キット名
+api.kits.create.components.description.label=説明
+api.kits.create.components.description.placeholder=キットの説明
+api.kits.create.succes=§aキットが正常に作成されました
+
+api.kits.delete.title=消去
+api.kits.delete.components.kits.label=削除するキットを選択します
+api.kits.delete.components.confirm.placeholder=確認またはキャンセル
+api.kits.delete.components.default=タイプ §a"CONFIRM" §rto §eCONTINUE §ror §c"CANCEL" §rto §eCANCEL
+api.kits.delete.succes=§aキットは正常に削除されました
+
+api.kits.reclaimselect.components.default=§r回収したいキットを選択
+api.kits.reclaim.title=回収する
+api.kits.reclaim.components.confirm.text=確認
+api.kits.reclaim.components.return.text=戻る
+api.kits.reclaim.components.default=§f¿§eこのキットを回収してもよろしいですか§f?
+
+api.kits.main.title=キット API
+api.kits.main.components.create.text=キットを作成
+api.kits.main.components.delete.text=キットを削除
+api.kits.main.components.reclaim.text=回収キット
+api.kits.main.components.view.text=キットを見る
+api.kits.components.default=キット API へようこそ
+
+api.kits.viewselect.components.default=§r見たいキットを選択
+api.kits.view.title=意見
+api.kits.view.components.exit.text=出口
+
+api.kits.errors.create.noname=§cキットには名前を付けなければなりません
+api.kits.errors.create.noitems=§cアップ！空のキットは作成できません
+api.kits.errors.create.price.wrongsyntax=§cアップ！価格の構文が間違っています。
+api.kits.errors.create.alreadyexist=§cその名前のキットがすでに存在する
+api.kits.errors.nokitsfound=§cキットが見つかりません
+api.kits.errors.reclaim.noperms=§cこのキットを回収する権限がありません§r
+api.kits.errors.reclaim.onlyonce=§cUps、このキットは 1 回限りの請求用に設定されており、すでに請求済みです!
+api.kits.errors.reclaim.notenoughmoney=§cアップ！あなたは十分なお金を持っていません
+api.kits.errors.reclaim.insufficientslots=§cこのキットを受け取るのに十分なスペースがありません

@@ -1,0 +1,46 @@
+api.kits.closechat=§eClose the chat to open KITS API form
+api.kits.chattimeout=§cYou haven't closed the chat on time so KITS API couldn't show you the form!
+
+api.kits.create.title=CREATE
+api.kits.create.components.reqTag.label=Required tag
+api.kits.create.components.price.label=Price ('0' is free kit)
+api.kits.create.components.price.placeholder=KIT PRICE
+api.kits.create.components.onlyonce.label=Can only be claimed once
+api.kits.create.components.default=§7Make sure not to use special characters in the names of the items or in any field of the form §f(§3all items in your inventory will be added to the kit, except for off-hand slots and armor slots§f)
+api.kits.create.components.name.placeholder=Kit name
+api.kits.create.components.description.label=Description
+api.kits.create.components.description.placeholder=Kit description
+api.kits.create.succes=§aThe kit has been created succesfully
+
+api.kits.delete.title=Delete
+api.kits.delete.components.kits.label=Select the kit that you want to delete
+api.kits.delete.components.confirm.placeholder=CONFIRM OR CANCEL
+api.kits.delete.components.default=Type §a"CONFIRM" §rto §eCONTINUE §ror §c"CANCEL" §rto §eCANCEL
+api.kits.delete.succes=§aThe kit has been deleted succesfully
+
+api.kits.reclaimselect.components.default=§rSelect the kit you want to reclaim
+api.kits.reclaim.title=Reclaim
+api.kits.reclaim.components.confirm.text=Confirm
+api.kits.reclaim.components.return.text=Return
+api.kits.reclaim.components.default=§f¿§eAre you sure you want to reclaim this kit§f?
+
+api.kits.main.title=KITS API
+api.kits.main.components.create.text=Create kit
+api.kits.main.components.delete.text=Delete kit
+api.kits.main.components.reclaim.text=Reclaim kit
+api.kits.main.components.view.text=View kit
+api.kits.components.default=Welcome to KITS API
+
+api.kits.viewselect.components.default=§rSelect the kit you want to see
+api.kits.view.title=View
+api.kits.view.components.exit.text=Exit
+
+api.kits.errors.create.noname=§cYou must put a name to the kit
+api.kits.errors.create.noitems=§cUps! You can't create an empty kit
+api.kits.errors.create.price.wrongsyntax=§cUps! Wrong syntax for the price!
+api.kits.errors.create.alreadyexist=§cAlready exists a kit with that name
+api.kits.errors.nokitsfound=§cNo kits found
+api.kits.errors.reclaim.noperms=§cYou dont have permission to reclaim this kit§r
+api.kits.errors.reclaim.onlyonce=§cUps, this kit was set up for a one-time claim and you've already claimed it!
+api.kits.errors.reclaim.notenoughmoney=§cUps! You don't have enough money
+api.kits.errors.reclaim.insufficientslots=§cYou dont have enough spaces to receive this kit

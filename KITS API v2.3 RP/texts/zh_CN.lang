@@ -1,0 +1,46 @@
+api.kits.closechat=§e关闭聊天以打开 KITS API 表单
+api.kits.chattimeout=§c您没有按时关闭聊天所以 KITS API 无法向您显示表格！
+
+api.kits.create.title=创造
+api.kits.create.components.reqTag.label=必填标签
+api.kits.create.components.price.label=价格（'0' 是免费套件）
+api.kits.create.components.price.placeholder=套件价格
+api.kits.create.components.onlyonce.label=只能申领一次
+api.kits.create.components.default=§7确保不要在物品名称或表格§f的任何字段中使用特殊字符（§3库存中的所有物品都将添加到套件中，副手栏和盔甲栏除外§f）
+api.kits.create.components.name.placeholder=套件名称
+api.kits.create.components.description.label=描述
+api.kits.create.components.description.placeholder=套件说明
+api.kits.create.succes=§a套件创建成功
+
+api.kits.delete.title=删除
+api.kits.delete.components.kits.label=选择要删除的套件
+api.kits.delete.components.confirm.placeholder=确认或取消
+api.kits.delete.components.default=输入§a“确认”§r到§e继续§r或§c“取消”§r到§e取消
+api.kits.delete.succes=§a套件删除成功
+
+api.kits.reclaimselect.components.default=§r选择您要取回的套件
+api.kits.reclaim.title=回收
+api.kits.reclaim.components.confirm.text=确认
+api.kits.reclaim.components.return.text=返回
+api.kits.reclaim.components.default=§f¿§e你确定要收回这个工具包§f吗？
+
+api.kits.main.title=工具包API
+api.kits.main.components.create.text=创建套件
+api.kits.main.components.delete.text=删除套件
+api.kits.main.components.reclaim.text=回收套件
+api.kits.main.components.view.text=查看套件
+api.kits.components.default=欢迎使用 KITS API
+
+api.kits.viewselect.components.default=§r选择你想看的套件
+api.kits.view.title=看法
+api.kits.view.components.exit.text=出口
+
+api.kits.errors.create.noname=§c你必须给套件起个名字
+api.kits.errors.create.noitems=§c向上！您不能创建空套件
+api.kits.errors.create.price.wrongsyntax=§c向上！价格语法错误！
+api.kits.errors.create.alreadyexist=§c已经存在同名的套件
+api.kits.errors.nokitsfound=§c未找到套件
+api.kits.errors.reclaim.noperms=§c您无权回收此工具包§r
+api.kits.errors.reclaim.onlyonce=§cUps，这个工具包是为一次性领取而设置的，你已经领取过了！
+api.kits.errors.reclaim.notenoughmoney=§c向上！你没有足够的钱
+api.kits.errors.reclaim.insufficientslots=§c你没有足够的空间来接收这个工具包

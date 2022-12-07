@@ -1,0 +1,46 @@
+api.kits.closechat=§eFeche o chat para abrir o formulário KITS API
+api.kits.chattimeout=§cVocê não fechou o chat a tempo, então KITS API não pôde te mostrar o formulário!
+
+api.kits.create.title=CRIO
+api.kits.create.components.reqTag.label=Marca obrigatória
+api.kits.create.components.price.label=Preço ('0' é kit grátis)
+api.kits.create.components.price.placeholder=PREÇO DO KIT
+api.kits.create.components.onlyonce.label=Só pode ser reivindicado uma vez
+api.kits.create.components.default=§7Certifique-se de não usar caracteres especiais nos nomes dos itens ou em qualquer campo do formulário §f(§3todos os itens do seu inventário serão adicionados ao kit, exceto para slots de mão secundária e slots de armadura§f)
+api.kits.create.components.name.placeholder=Nome do kit
+api.kits.create.components.description.label=Descrição
+api.kits.create.components.description.placeholder=descrição do kit
+api.kits.create.succes=§aO kit foi criado com sucesso
+
+api.kits.delete.title=Excluir
+api.kits.delete.components.kits.label=Selecione o kit que você deseja excluir
+api.kits.delete.components.confirm.placeholder=CONFIRMAR OU CANCELAR
+api.kits.delete.components.default=Digite §a"CONFIRMAR" §rto §eCONTINUAR §rou §c"CANCELAR" §rto §eCANCELAR
+api.kits.delete.succes=§aO kit foi deletado com sucesso
+
+api.kits.reclaimselect.components.default=§rSelecione o kit que deseja recuperar
+api.kits.reclaim.title=Recuperar
+api.kits.reclaim.components.confirm.text=confirme
+api.kits.reclaim.components.return.text=Retornar
+api.kits.reclaim.components.default=§f¿§eTem certeza de que deseja recuperar este kit§f?
+
+api.kits.main.title=KITS API
+api.kits.main.components.create.text=Criar kit
+api.kits.main.components.delete.text=Excluir kit
+api.kits.main.components.reclaim.text=Kit de recuperação
+api.kits.main.components.view.text=Ver kit
+api.kits.components.default=Bem-vindo à API KITS
+
+api.kits.viewselect.components.default=§rSelecione o kit que deseja ver
+api.kits.view.title=Visão
+api.kits.view.components.exit.text=Saída
+
+api.kits.errors.create.noname=§cVocê deve colocar um nome no kit
+api.kits.errors.create.noitems=§cUps! Você não pode criar um kit vazio
+api.kits.errors.create.price.wrongsyntax=§cUps! Sintaxe errada para o preço!
+api.kits.errors.create.alreadyexist=§cJá existe um kit com esse nome
+api.kits.errors.nokitsfound=§cNenhum kit encontrado
+api.kits.errors.reclaim.noperms=§cVocê não tem permissão para recuperar este kit§r
+api.kits.errors.reclaim.onlyonce=§cUps, este kit foi configurado para uma solicitação única e você já o reivindicou!
+api.kits.errors.reclaim.notenoughmoney=§cUps! Você não tem dinheiro suficiente
+api.kits.errors.reclaim.insufficientslots=§cVocê não tem espaço suficiente para receber este kit

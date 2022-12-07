@@ -1,0 +1,46 @@
+api.kits.closechat=§e채팅을 닫고 KITS API 양식 열기
+api.kits.chattimeout=§c제 시간에 채팅을 닫지 않아 KITS API에서 양식을 표시할 수 없습니다!
+
+api.kits.create.title=만들다
+api.kits.create.components.reqTag.label=필수 태그
+api.kits.create.components.price.label=가격('0'은 무료 키트)
+api.kits.create.components.price.placeholder=키트 가격
+api.kits.create.components.onlyonce.label=한 번만 청구할 수 있습니다.
+api.kits.create.components.default=§7아이템 이름이나 §f 형식의 필드에 특수 문자를 사용하지 마십시오.
+api.kits.create.components.name.placeholder=키트 이름
+api.kits.create.components.description.label=설명
+api.kits.create.components.description.placeholder=키트 설명
+api.kits.create.succes=§a키트가 성공적으로 생성되었습니다.
+
+api.kits.delete.title=삭제
+api.kits.delete.components.kits.label=삭제할 키트를 선택합니다.
+api.kits.delete.components.confirm.placeholder=확인 또는 취소
+api.kits.delete.components.default=유형 §a"확인" §rto §eCONTINUE §ror §c"CANCEL" §rto §eCANCEL
+api.kits.delete.succes=§a키트가 성공적으로 삭제되었습니다.
+
+api.kits.reclaimselect.components.default=§r회수하려는 키트를 선택하십시오.
+api.kits.reclaim.title=개심
+api.kits.reclaim.components.confirm.text=확인하다
+api.kits.reclaim.components.return.text=반품
+api.kits.reclaim.components.default=§f¿§e이 키트를 회수하시겠습니까§f?
+
+api.kits.main.title=키트 API
+api.kits.main.components.create.text=키트 만들기
+api.kits.main.components.delete.text=키트 삭제
+api.kits.main.components.reclaim.text=회수 키트
+api.kits.main.components.view.text=키트 보기
+api.kits.components.default=KITS API에 오신 것을 환영합니다.
+
+api.kits.viewselect.components.default=§r보고 싶은 키트를 선택하십시오
+api.kits.view.title=보다
+api.kits.view.components.exit.text=출구
+
+api.kits.errors.create.noname=§c키트에 이름을 입력해야 합니다.
+api.kits.errors.create.noitems=§c업! 빈 키트를 만들 수 없습니다.
+api.kits.errors.create.price.wrongsyntax=§c업! 가격에 대한 잘못된 구문!
+api.kits.errors.create.alreadyexist=§c이미 해당 이름의 키트가 있습니다.
+api.kits.errors.nokitsfound=§c키트를 찾을 수 없음
+api.kits.errors.reclaim.noperms=§c이 키트를 회수할 권한이 없습니다.§r
+api.kits.errors.reclaim.onlyonce=§cUps, 이 키트는 일회성 청구용으로 설정되었으며 귀하는 이미 청구했습니다!
+api.kits.errors.reclaim.notenoughmoney=§c업! 당신은 돈이 충분하지 않습니다
+api.kits.errors.reclaim.insufficientslots=§c이 키트를 받을 공간이 부족합니다.

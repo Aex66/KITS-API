@@ -1,0 +1,46 @@
+api.kits.closechat=§eFermez le chat pour ouvrir le formulaire de l'API KITS
+api.kits.chattimeout=§cVous n'avez pas fermé le chat à temps donc l'API KITS n'a pas pu vous montrer le formulaire !
+
+api.kits.create.title=CRÉER
+api.kits.create.components.reqTag.label=Balise obligatoire
+api.kits.create.components.price.label=Prix ​​('0' est un kit gratuit)
+api.kits.create.components.price.placeholder=PRIX DU KIT
+api.kits.create.components.onlyonce.label=Ne peut être réclamé qu'une seule fois
+api.kits.create.components.default=§7Assurez-vous de ne pas utiliser de caractères spéciaux dans les noms des objets ou dans les champs du formulaire §f(§3tous les objets de votre inventaire seront ajoutés au kit, à l'exception des emplacements de main secondaire et des emplacements d'armure§f)
+api.kits.create.components.name.placeholder=Nom du kit
+api.kits.create.components.description.label=La description
+api.kits.create.components.description.placeholder=Descriptif du kit
+api.kits.create.succes=§aLe kit a été créé avec succès
+
+api.kits.delete.title=Effacer
+api.kits.delete.components.kits.label=Sélectionnez le kit que vous souhaitez supprimer
+api.kits.delete.components.confirm.placeholder=CONFIRMER OU ANNULER
+api.kits.delete.components.default=Tapez §a"CONFIRMER" §rpour §eCONTINUER §rou §c"ANNULER" §rpour §eANNULER
+api.kits.delete.succes=§aLe kit a été supprimé avec succès
+
+api.kits.reclaimselect.components.default=§rSélectionnez le kit que vous souhaitez récupérer
+api.kits.reclaim.title=Récupérer
+api.kits.reclaim.components.confirm.text=Confirmer
+api.kits.reclaim.components.return.text=Revenir
+api.kits.reclaim.components.default=§f¿§eVoulez-vous vraiment récupérer ce kit§f ?
+
+api.kits.main.title=KITS API
+api.kits.main.components.create.text=Créer une trousse
+api.kits.main.components.delete.text=Supprimer le kit
+api.kits.main.components.reclaim.text=Kit de récupération
+api.kits.main.components.view.text=Voir la trousse
+api.kits.components.default=Bienvenue dans l'API KITS
+
+api.kits.viewselect.components.default=§rSélectionnez le kit que vous voulez voir
+api.kits.view.title=Voir
+api.kits.view.components.exit.text=Sortir
+
+api.kits.errors.create.noname=§cVous devez mettre un nom sur le kit
+api.kits.errors.create.noitems=§cUps ! Vous ne pouvez pas créer un kit vide
+api.kits.errors.create.price.wrongsyntax=§cUps ! Mauvaise syntaxe pour le prix !
+api.kits.errors.create.alreadyexist=§cExiste déjà un kit portant ce nom
+api.kits.errors.nokitsfound=§cAucun kit trouvé
+api.kits.errors.reclaim.noperms=§cVous n'êtes pas autorisé à récupérer ce kit§r
+api.kits.errors.reclaim.onlyonce=§cUps, ce kit a été mis en place pour une réclamation unique et vous l'avez déjà réclamé !
+api.kits.errors.reclaim.notenoughmoney=§cUps ! Vous n'avez pas assez d'argent
+api.kits.errors.reclaim.insufficientslots=§cVous n'avez pas assez de places pour recevoir ce kit
