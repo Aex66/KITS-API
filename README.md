@@ -6,7 +6,7 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 
 # Modules
 
-<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/CREATE KIT.png" height="50" /></a>
+<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="assets/CREATE KIT.png" height="50" /></a>
 
 ###### When creating a kit you have several options and settings, such as: <br>
 -Name <br>
@@ -17,11 +17,11 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 -OnlyOnce (The kit can only be claimed once per player) <br>
 **_The kit will take all the items in your inventory (Except for off-hand slots and armor slots)._**
 
-<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/REMOVE KIT.png" height="50" /></a>
+<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="assets/REMOVE KIT.png" height="50" /></a>
 
 ###### This module will allow you to remove a kit from the database, to delete it you have to select it in the dropdown the kit you want to remove (all the current kits on the server will appear in the dropdown) and followed by this write "CONFIRM" in capital letters and without the quotes and the kit will be eliminated, if you write anything else nothing will happen, it will only return you to the form <br>
 
-<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/VIEW INFO.png" height="50" /></a>
+<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="assets/VIEW INFO.png" height="50" /></a>
 
 ###### When you want to see a kit, you will get a list of the existing kits and clicking send will take you to a form where you can see the following information about the kit:
 -Description <br>
@@ -32,7 +32,7 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 -ItemCount (The number of slots that the kit items occupy) <br>
 -Created At (When the kit was created) <br>
 
-<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/RECLAIM.png" height="50" /></a>
+<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="assets/RECLAIM.png" height="50" /></a>
 ###### In order to claim a kit, your server members will have to pass all limitations before they can claim it.
 -If the kit has "RequiredTag" the member must have the tag set for that kit, in order to claim it. <br>
 -If the kit has a "Cooldown", the player will be able to claim it but to be able to claim it again they will have to wait until the cooldown ends <br>
