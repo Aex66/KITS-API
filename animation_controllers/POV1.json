@@ -1,0 +1,25 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+      "controller.animation.POV1": {
+        "states": {
+          "default": {
+            "transitions": [
+              {
+                "scroll": "query.is_first_person"
+              }
+            ],
+            "on_exit": ["/tag @s add \"isFirstPerson\""]
+          },
+          "scroll": {
+            "transitions": [
+              {
+                "default": "!query.is_first_person"
+              }
+            ],
+            "on_exit": ["/tag @s remove \"isFirstPerson\""]
+          }
+        }
+      }
+    }
+  }
