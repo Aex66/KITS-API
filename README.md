@@ -41,28 +41,71 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 **Note: If you are an administrator, none of these limitations will bother you when you want to claim the kit.** <br>
 
 # FOR DEVS
-## If you have some knowledge in javascript or typescript, I will show you how you can execute code when some KITS API event is fired
+If you have some knowledge in javascript or typescript, I will show you how you can execute code when some KITS API event is fired
 
+# KITS API EVENTS 
 
+## kitCreated
 ```ts
-/**
- * KITS API EVENTS
- */
 Script.on('kitCreated', (res) => {
-        //Fires when a kit is created
-})
-
-Script.on('kitDeleted', (res) => {
-        //Fires when a kit is deleted
-})
-
-Script.on('kitClaimed', (res) => {
-        //Fires when a kit is claimed
-})
-
-Script.on('kitPurchased', (res) => {
-        //Fires when a kit is purchased
+   res.kitName
+   res.player
+   res.kitData
+   res.executionTime
 })
 ```
+This event will be triggered when a kit is successfully created.
+Propertys: <br>
+-kitName: string (The name of the kit that has been created) <br>
+-player: @minecraft/server.Player (The player who created the kit) <br>
+-kitData: KitInformation (All the information of the kit that has been created. If you use the typescript version, all the properties are typed to make it easier for you.) <br>
+-executionTime: string (Time it took to create the kit) <br><br>
+
+## kitDeleted
+```ts
+Script.on('kitDeleted', (res) => {
+   res.kitName
+   res.player
+   res.kitData
+   res.executionTime
+})
+```
+This event will be triggered when a kit is successfully deleted
+Propertys: <br>
+-kitName: string (The name of the kit that has been deleted) <br>
+-player: @minecraft/server.Player (The player who deleted the kit) <br>
+-kitData: KitInformation (All the information of the kit that has been deleted. If you use the typescript version, all the properties are typed to make it easier for you.) <br>
+-executionTime: string (Time it took to delete the kit) <br><br>
+
+## kitClaimed
+```ts
+Script.on('kitClaimed', (res) => {
+   res.kitName
+   res.player
+   res.executionTime
+})
+```
+This event will be triggered when a kit is successfully claimed
+Propertys: <br>
+-kitName: string (The name of the kit that has been claimed) <br>
+-player: @minecraft/server.Player (The player who claimed the kit) <br>
+-executionTime: string (Time it took to send the kit to the player) <br><br>
+
+## kitPurchased
+```ts
+Script.on('kitClaimed', (res) => {
+   res.kitName
+   res.player
+   res.price
+   res.executionTime
+})
+```
+This event will trigger when a kit is successfully purchased.
+Propertys: <br>
+-kitName: string (The name of the kit that has been purchased) <br>
+-player: @minecraft/server.Player (The player who purchased the kit) <br>
+-price: number (The price of the kit that has been purchased)
+-executionTime: string (Time it took to send the kit to the player) <br><br>
+
 # MY SOCIAL NETWORKS
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" height="50" /></a>
