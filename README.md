@@ -17,11 +17,11 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 -OnlyOnce (The kit can only be claimed once per player) <br>
 **The kit will take all the items in your inventory (Except for off-hand slots and armor slots).**
 
-<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/REMOVE.png" height="50" /></a>
+<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/REMOVE KIT.png" height="50" /></a>
 
 ###### When you want to delete a kit, you will have a list where you will choose one of the existing kits and then you will have to write the word "CONFIRM" to delete it.
 
-<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/VIEW.png" height="50" /></a>
+<a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="KITS API v2.3 RP/textures/emojis/VIEW INFO.png" height="50" /></a>
 
 ###### When you want to see a kit, you will get a list of the existing kits and clicking send will take you to a form where you can see the following information about the kit:
 -Description
