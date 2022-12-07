@@ -107,7 +107,7 @@ Propertys: <br>
 -price: number (The price of the kit that has been purchased) <br>
 -executionTime: string (Time it took to send the kit to the player) <br><br>
 
-**_EXAMPLE_**
+**_EXAMPLE_** <br>
 ```main.ts```
 ```ts
 import { Location } from "@minecraft/server"
