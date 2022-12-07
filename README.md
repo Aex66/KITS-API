@@ -40,5 +40,9 @@ When starting KITS API, if you are a world administrator you have to add the "Ad
 -If the kit has a price, the player will have to have enough money to be able to claim it and it will be discounted, if he does not have enough money, nothing will be discounted and the kit will not be given to him <br>
 **Note: If you are an administrator, none of these limitations will bother you when you want to claim the kit.** <br>
 
+# FOR DEVS
+If you have some knowledge in javascript or typescript, I will show you how you can execute code when some KITS API event is fired
+
+<code>if</code>
 # MY SOCIAL NETWORKS
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" height="50" /></a>
