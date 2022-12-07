@@ -54,7 +54,7 @@ Script.on('kitCreated', (res) => {
    res.executionTime
 })
 ```
-This event will be triggered when a kit is successfully created.
+This event will be triggered when a kit is successfully created. <br>
 Propertys: <br>
 -kitName: string (The name of the kit that has been created) <br>
 -player: @minecraft/server.Player (The player who created the kit) <br>
@@ -70,7 +70,7 @@ Script.on('kitDeleted', (res) => {
    res.executionTime
 })
 ```
-This event will be triggered when a kit is successfully deleted
+This event will be triggered when a kit is successfully deleted. <br>
 Propertys: <br>
 -kitName: string (The name of the kit that has been deleted) <br>
 -player: @minecraft/server.Player (The player who deleted the kit) <br>
@@ -85,7 +85,7 @@ Script.on('kitClaimed', (res) => {
    res.executionTime
 })
 ```
-This event will be triggered when a kit is successfully claimed
+This event will be triggered when a kit is successfully claimed. <br>
 Propertys: <br>
 -kitName: string (The name of the kit that has been claimed) <br>
 -player: @minecraft/server.Player (The player who claimed the kit) <br>
@@ -100,7 +100,7 @@ Script.on('kitClaimed', (res) => {
    res.executionTime
 })
 ```
-This event will trigger when a kit is successfully purchased.
+This event will trigger when a kit is successfully purchased. <br<
 Propertys: <br>
 -kitName: string (The name of the kit that has been purchased) <br>
 -player: @minecraft/server.Player (The player who purchased the kit) <br>
