@@ -115,7 +115,8 @@ import Script from './lib/Script.js'
 Script.on('kitCreated', (res) => {
     const { x, y, z } = res.player.location
     const entity = res.player.dimension.spawnEntity('minecraft:armor_stand', new Location(x, y, z))
-    entity.nameTag = `You have created the kit ${res.kitName} succesfully1`
+    entity.nameTag = `You have created the kit ${res.kitName} succesfully`
+    entity.kill()
 })
 ```
 
