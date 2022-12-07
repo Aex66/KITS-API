@@ -107,5 +107,17 @@ Propertys: <br>
 -price: number (The price of the kit that has been purchased) <br>
 -executionTime: string (Time it took to send the kit to the player) <br><br>
 
+**_EXAMPLE_**
+```main.ts```
+```ts
+import { Location } from "@minecraft/server"
+import Script from './lib/Script.js'
+Script.on('kitCreated', (res) => {
+    const { x, y, z } = res.player.location
+    const entity = res.player.dimension.spawnEntity('minecraft:armor_stand', new Location(x, y, z))
+    entity.nameTag = `You have created the kit ${res.kitName} succesfully1`
+})
+```
+
 # MY SOCIAL NETWORKS
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" height="50" /></a>
