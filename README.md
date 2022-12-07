@@ -93,18 +93,18 @@ Propertys: <br>
 
 ## kitPurchased
 ```ts
-Script.on('kitClaimed', (res) => {
+Script.on('kitPurchased', (res) => {
    res.kitName
    res.player
    res.price
    res.executionTime
 })
 ```
-This event will trigger when a kit is successfully purchased. <br<
+This event will trigger when a kit is successfully purchased. <br>
 Propertys: <br>
 -kitName: string (The name of the kit that has been purchased) <br>
 -player: @minecraft/server.Player (The player who purchased the kit) <br>
--price: number (The price of the kit that has been purchased)
+-price: number (The price of the kit that has been purchased) <br>
 -executionTime: string (Time it took to send the kit to the player) <br><br>
 
 # MY SOCIAL NETWORKS
