@@ -118,6 +118,8 @@ Script.on('kitCreated', (res) => {
     entity.kill()
 })
 ```
+# Download
+<a href="https://www.mediafire.com/file/y6qmg6174es9wo6/KITS_API_v2.3.mcaddon/file" target="blank"><img align="center" src="https://cdn.worldvectorlogo.com/logos/mediafire-1-3.svg" height="50" /></a>
 
 # MY SOCIAL NETWORKS
 <a href="https://www.youtube.com/channel/UCcb6TseFTpboFwgZM737IGA" target="blank"><img align="center" src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" height="50" /></a>
