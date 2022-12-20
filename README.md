@@ -1,5 +1,5 @@
 # KITS-API
-[KITS API](https://mcpedl.com/kits-api/) is an addon for minecraft bedrock which will allow you to create and claim KITS in your world with much ease
+[KITS API](https://mcpedl.com/kits-api/) is an addon for [MINECRAFT BEDROCK](https://www.microsoft.com/es-ec/p/minecraft-for-windows/9nblggh2jhxj?activetab=pivot:overviewtab) which will allow you to create and claim KITS in your world with much ease
 # HOW TO SETUP
 When starting the KITS API, if you are a server administrator, you must add the "Admin" tag to be able to create, delete, view kit information, and claim them without limitations. Otherwise, you will not be able to create, delete, view kit information or claim them without limitations! Now that you have this clear, run the command **"ka?kits"** in chat to open the **KITS API** form
 
