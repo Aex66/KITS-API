@@ -27,6 +27,7 @@ export const Create = (player, status) => {
             return Create(player, 'api.kits.errors.create.price.wrongsyntax');
         if (Script.kits.has(name))
             return Create(player, 'api.kits.errors.create.alreadyexist');
+        //@ts-ignore
         const inventory = player.getComponent('inventory').container;
         const items = [];
         let itemCount = 0;

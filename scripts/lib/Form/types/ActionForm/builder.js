@@ -70,7 +70,7 @@ export class ActionFormData extends EventEmitter {
             if (MojangResponse.cancelationReason === 'userBusy')
                 this.show(user, callback);
             if (!this.reShowed)
-                return (player.tell('§cClose any UI to show the form'),
+                return (player.sendMessage('§cClose any UI to show the form'),
                     this.reShowed = true);
             if (!callback)
                 return;

@@ -13,11 +13,13 @@ Discord: Aex66#0202
 © Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours
 Thank you
 */
-import { system, world } from '@minecraft/server'
+import { Player, system, world } from '@minecraft/server'
 import { EconomyObjective } from './config.js'
 import { importObjectives } from './extras/Utils.js'
 import Script from './lib/Script.js'
 import './plugins/commands/import.js'
+import { stringToHex } from './extras/Converters.js'
+import { FormKit } from './plugins/Forms/KITS API/FormKit.js'
 
 importObjectives(
         [
@@ -50,4 +52,15 @@ Script.on('kitClaimed', (res) => {
 
 Script.on('kitPurchased', (res) => {
         //Fires when a kit is purchased
+})
+
+const log = new Map()
+world.events.itemUseOn.subscribe((res) => {
+        if (Date.now() < (log.get(res.source.id) ?? 0)) return;
+        const block = res.source.dimension.getBlock(res.getBlockLocation())
+        if (!block.typeId.includes('sign')) return;
+        const sign = block.getComponent('sign')
+        if (stringToHex(sign.text) !== '5b4b4954532d4150495d') return;
+        FormKit((res.source as Player))
+        log.set(res.source.id, Date.now() + 500)
 })

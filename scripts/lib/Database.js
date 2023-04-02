@@ -1,4 +1,4 @@
-import { textToHex, hexToText } from '../extras/Converters.js';
+import { textToAscii, asciiToText } from '../extras/Converters.js';
 import { world } from '@minecraft/server';
 import Server from './Server.js';
 /*
@@ -32,7 +32,7 @@ export class Database {
      */
     write(key, value) {
         Object.assign(memory[this.fullName], { [key]: [value, new Date().getTime()] });
-        let keyL = world.scoreboard.getObjective(this.fullName).getScores().filter(p => p.participant.displayName.startsWith(key) && p.score != 0).length + 1, j = 1, data = textToHex(JSON.stringify(value));
+        let keyL = world.scoreboard.getObjective(this.fullName).getScores().filter(p => p.participant.displayName.startsWith(key) && p.score != 0).length + 1, j = 1, data = textToAscii(JSON.stringify(value));
         for (let l = 1; l < keyL; l++)
             Server.commandQueue(`scoreboard players reset "${key + l}" "${this.fullName}"`);
         for (const hex of data)
@@ -53,7 +53,7 @@ export class Database {
         const scores = world.scoreboard.getObjective(this.fullName).getScores().filter(p => p.participant.displayName.startsWith(key) && p.score != 0).map(s => [parseInt(s.participant.displayName.replace(key, '')), s.score]).sort((a, b) => a[0] - b[0]).map(s => s[1]);
         if (!scores.length)
             return;
-        const parts = JSON.parse(hexToText(scores));
+        const parts = JSON.parse(asciiToText(scores));
         Object.assign(memory[this.fullName], { [key]: [parts, new Date().getTime()] });
         return parts;
     }

@@ -18,7 +18,7 @@ export const FormKit = (player, status) => {
     MainForm.button('api.kits.main.components.reclaim.text', iconPaths.reclaim);
     MainForm.show(player).then((res) => {
         if (res.canceled && res.cancelationReason === 'userBusy')
-            return (player.tell({ rawtext: [{ translate: 'api.kits.chattimeout' }] }),
+            return (player.sendMessage({ rawtext: [{ translate: 'api.kits.chattimeout' }] }),
                 player.playSound('random.break'));
         const button = res.selection;
         switch (button) {

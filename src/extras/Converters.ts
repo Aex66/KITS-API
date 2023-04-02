@@ -9,13 +9,20 @@ export const metricNumbers = (value: number): number | string => {
 * @param {string} text 
 * @returns {number[]}
 */// @ts-ignore
-textToHex = (text: string): number[] => text.split('').map(char => char.charCodeAt()),
+textToAscii = (text: string): number[] => text.split('').map(char => char.charCodeAt()),
 /**
 * Convert hex to string
 * @param {number} hex 
 * @returns {string}
 */
-hexToText = (hex: number[]): string => hex.map(char => String.fromCharCode(char)).join('');
+asciiToText = (hex: number[]): string => hex.map(char => String.fromCharCode(char)).join('');
+export function stringToHex(str: string): string {
+    let hex = '';
+    for(let i=0; i<str.length; i++) {
+      hex += str.charCodeAt(i).toString(16);
+    }
+    return hex;
+} 
 type Unit =
     | 'Years'
     | 'Year'

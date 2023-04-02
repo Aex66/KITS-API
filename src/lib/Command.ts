@@ -81,9 +81,9 @@ world.events.beforeChat.subscribe(data => {
         const cM = args.shift();
         const cD = Command.getCommand(cM)
         if (!cD)
-            return data.sender.tell(`§cThe command §e${cM} §cdoes not exist.`);
+            return data.sender.sendMessage(`§cThe command §e${cM} §cdoes not exist.`);
         if (cD.admin && !data.sender.hasTag(adminTag))
-            return data.sender.tell(`§cYou do not have permission to run that command!`);
+            return data.sender.sendMessage(`§cYou do not have permission to run that command!`);
         try {
             cD.callback(data.sender, args, `${Date.now() - now}ms`);
         } catch (error) {

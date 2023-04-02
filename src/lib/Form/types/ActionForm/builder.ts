@@ -85,7 +85,7 @@ export class ActionFormData extends EventEmitter {
 			    this.show(user, callback)
 			if (!this.reShowed)
 			    return (
-					player.tell('§cClose any UI to show the form'),
+					player.sendMessage('§cClose any UI to show the form'),
 					this.reShowed = true
 				)
 			if (!callback)

@@ -10,13 +10,20 @@ export const metricNumbers = (value) => {
 * @param {string} text
 * @returns {number[]}
 */ // @ts-ignore
-textToHex = (text) => text.split('').map(char => char.charCodeAt()), 
+textToAscii = (text) => text.split('').map(char => char.charCodeAt()), 
 /**
 * Convert hex to string
 * @param {number} hex
 * @returns {string}
 */
-hexToText = (hex) => hex.map(char => String.fromCharCode(char)).join('');
+asciiToText = (hex) => hex.map(char => String.fromCharCode(char)).join('');
+export function stringToHex(str) {
+    let hex = '';
+    for (let i = 0; i < str.length; i++) {
+        hex += str.charCodeAt(i).toString(16);
+    }
+    return hex;
+}
 export function MS(value, { compactDuration, fullDuration, avoidDuration } = {}) {
     try {
         if (typeof value === 'string') {

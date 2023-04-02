@@ -23,7 +23,6 @@ import { FormKit } from "./FormKit.js";
 import { ReclaimSelect } from "./ReclaimSelect.js";
 import { ActionFormData } from "@minecraft/server-ui";
 export const Reclaim = (player, kitName, status) => {
-    const { description } = Script.kits.read(kitName);
     const ReclaimForm = new ActionFormData()
         .title(kitName)
         .body(status ? status : 'api.kits.reclaim.components.default')
@@ -40,16 +39,17 @@ export const Reclaim = (player, kitName, status) => {
                 const KitData = Script.kits.read(kitName);
                 const isAdmin = player.hasTag(Script.adminTag);
                 const items = KitData.items;
-                console.warn(JSON.stringify(KitData));
+                //@ts-ignore
                 const inventory = player.getComponent('inventory').container;
                 if (!isAdmin && (KitData.requiredTag && KitData.requiredTag !== 'noReqTag' && !player.hasTag(KitData.requiredTag)))
                     return ReclaimSelect(player, 'api.kits.errors.reclaim.noperms');
                 const cooldown = (_b = Number((_a = player.getTags().find((tag) => tag.startsWith(`KA-Cooldown:${kitName}:`))) === null || _a === void 0 ? void 0 : _a.substring(12 + kitName.length + 1))) !== null && _b !== void 0 ? _b : null;
                 if (!isAdmin && (cooldown && cooldown > Date.now()))
                     return ReclaimSelect(player, translate('inCooldown', [MS(cooldown - Date.now())]));
-                if (!isAdmin)
+                if (!isAdmin) {
                     removeAllCooldownTags(player, kitName),
                         player.addTag(`KA-Cooldown:${kitName}:${Date.now() + KitData.cooldown}`);
+                }
                 if (!isAdmin && (KitData.onlyOnce && player.hasTag(`KA-ClaimedKit:${kitName}`)))
                     return ReclaimSelect(player, 'api.kits.errors.reclaim.onlyonce');
                 if (KitData.onlyOnce)

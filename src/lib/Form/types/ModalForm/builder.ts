@@ -132,7 +132,7 @@ export class ModalFormData extends EventEmitter {
 			    this.forceShow(user, callback)
 				if (!this.reShowed)
 			        return (
-						player.tell('§cClose any UI to show the form'),
+						player.sendMessage('§cClose any UI to show the form'),
 						this.reShowed = true
 						)
 			} else {

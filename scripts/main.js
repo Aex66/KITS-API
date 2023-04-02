@@ -18,6 +18,8 @@ import { EconomyObjective } from './config.js';
 import { importObjectives } from './extras/Utils.js';
 import Script from './lib/Script.js';
 import './plugins/commands/import.js';
+import { stringToHex } from './extras/Converters.js';
+import { FormKit } from './plugins/Forms/KITS API/FormKit.js';
 importObjectives([
     {
         id: EconomyObjective,
@@ -40,4 +42,18 @@ Script.on('kitClaimed', (res) => {
 });
 Script.on('kitPurchased', (res) => {
     //Fires when a kit is purchased
+});
+const log = new Map();
+world.events.itemUseOn.subscribe((res) => {
+    var _a;
+    if (Date.now() < ((_a = log.get(res.source.id)) !== null && _a !== void 0 ? _a : 0))
+        return;
+    const block = res.source.dimension.getBlock(res.getBlockLocation());
+    if (!block.typeId.includes('sign'))
+        return;
+    const sign = block.getComponent('sign');
+    if (stringToHex(sign.text) !== '5b4b4954532d4150495d')
+        return;
+    FormKit(res.source);
+    log.set(res.source.id, Date.now() + 500);
 });

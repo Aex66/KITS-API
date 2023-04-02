@@ -6,7 +6,6 @@ interface EnchantmentData {
 }
 export interface ItemData {
     id: string;
-    data: number;
     amount: number;
     nameTag: string;
     lore: string[];
@@ -15,7 +14,6 @@ export interface ItemData {
 export const getItemData = (item: ItemStack) => {
     const itemData: ItemData = {
       id: item.typeId,
-      data: item.data,
       amount: item.amount,
       nameTag: item.nameTag,
       lore: item.getLore(),
@@ -46,7 +44,6 @@ export const newItem = (itemData: ItemData) => {
     const item = new ItemStack(
       Items.get(itemData.id),
       itemData.amount,
-      itemData.data
     );
     item.nameTag = itemData.nameTag;
     item.setLore(itemData.lore);

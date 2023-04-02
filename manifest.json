@@ -1,9 +1,9 @@
 {
     "format_version": 2,
     "header": {
-        "name": "KITS API v2.3",
+        "name": "KITS API v2.4",
         "description": "pack.description",
-        "uuid": "10ca2f23-7c28-409a-ac84-a33e2272602c",
+        "uuid": "d1a9fa67-a35f-414d-b120-cdc6bdfc4913",
         "version": [ 1, 0, 0 ],
         "min_engine_version": [ 1, 19, 50 ]
     },

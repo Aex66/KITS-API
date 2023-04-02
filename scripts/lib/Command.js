@@ -2,7 +2,7 @@ import { world } from "@minecraft/server";
 import Script from "./Script";
 const commandPrefix = Script.prefix;
 export const adminTag = Script.adminTag;
-export class Command {
+class Command {
     /**
      * Register a new command!
      * @param {ICommandInfo} info Register info for the command
@@ -66,6 +66,7 @@ export class Command {
     }
 }
 Command.rC = [];
+export { Command };
 world.events.beforeChat.subscribe(data => {
     if (data.message.startsWith(commandPrefix)) {
         data.cancel = true;
@@ -74,9 +75,9 @@ world.events.beforeChat.subscribe(data => {
         const cM = args.shift();
         const cD = Command.getCommand(cM);
         if (!cD)
-            return data.sender.tell(`§cThe command §e${cM} §cdoes not exist.`);
+            return data.sender.sendMessage(`§cThe command §e${cM} §cdoes not exist.`);
         if (cD.admin && !data.sender.hasTag(adminTag))
-            return data.sender.tell(`§cYou do not have permission to run that command!`);
+            return data.sender.sendMessage(`§cYou do not have permission to run that command!`);
         try {
             cD.callback(data.sender, args, `${Date.now() - now}ms`);
         }

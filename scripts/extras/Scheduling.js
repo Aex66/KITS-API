@@ -62,13 +62,13 @@ Website: https://www.rotmc.ml
 Docs: https://docs.google.com/document/d/1hasFU7_6VOBfjXrQ7BE_mTzwacOQs5HC21MJNaraVgg
 Thank you!
 */
-import { world } from '@minecraft/server';
+import { system } from '@minecraft/server';
 /**
 * Defines:
 */
 const tickTimeoutMap = new Map(), tickIntervalMap = new Map();
 let totalTick = 0, tickIntervalID = 0, tickTimeoutID = 0;
-world.events.tick.subscribe(() => {
+system.runInterval(() => {
     totalTick++;
     for (const [ID, tickTimeout] of tickTimeoutMap) {
         tickTimeout.tick--;

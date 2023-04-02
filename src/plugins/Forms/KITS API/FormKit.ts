@@ -50,7 +50,7 @@ export const FormKit = (player: Player, status?: string) => {
     MainForm.show(player).then((res) => {
         if (res.canceled && res.cancelationReason === 'userBusy')
             return (
-                player.tell({ rawtext: [ { translate: 'api.kits.chattimeout' } ] }),
+                player.sendMessage({ rawtext: [ { translate: 'api.kits.chattimeout' } ] }),
                 player.playSound('random.break')
             )
         const button = res.selection

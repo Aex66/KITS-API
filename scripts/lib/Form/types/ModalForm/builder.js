@@ -112,7 +112,7 @@ export class ModalFormData extends EventEmitter {
             if (MojangResponse.cancelationReason === 'userBusy') {
                 this.forceShow(user, callback);
                 if (!this.reShowed)
-                    return (player.tell('§cClose any UI to show the form'),
+                    return (player.sendMessage('§cClose any UI to show the form'),
                         this.reShowed = true);
             }
             else {

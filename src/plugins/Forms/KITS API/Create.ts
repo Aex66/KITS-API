@@ -16,7 +16,6 @@ Thank you
 import { Player } from "@minecraft/server";
 import { ModalFormData } from "@minecraft/server-ui";
 import { MS } from "../../../extras/Converters.js";
-import { translate } from "../../../extras/Lang.js";
 import { getItemData, ItemData } from "../../../extras/Utils.js";
 import Script from "../../../lib/Script.js";
 import { FormKit } from "./FormKit.js";
@@ -64,7 +63,7 @@ export const Create = (player: Player, status?: string) => {
             return Create(player, 'api.kits.errors.create.price.wrongsyntax')
         if (Script.kits.has(name)) 
             return Create(player, 'api.kits.errors.create.alreadyexist')
-
+        //@ts-ignore
         const inventory = player.getComponent('inventory').container
         const items: ItemData[] = []
         let itemCount = 0

@@ -9,7 +9,7 @@ new Command(
         admin: false
     },
     (plr, args) => {
-        plr.tell({ rawtext: [ { translate: 'api.kits.closechat' } ] })
+        plr.sendMessage({ rawtext: [ { translate: 'api.kits.closechat' } ] })
         setTickTimeout(() => FormKit(plr), 20)
     }
 )
