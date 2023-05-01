@@ -13,7 +13,7 @@ Discord: Aex66#0202
 © Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours.
 Thank you
 */
-import { Player, world } from "@minecraft/server";
+import { Container, EntityEquipmentInventoryComponent, EntityInventoryComponent, EquipmentSlot, Player, world } from "@minecraft/server";
 import { EconomyObjective } from "../../../config.js";
 import { MS } from "../../../extras/Converters.js";
 import { translate } from "../../../extras/Lang.js";
@@ -49,8 +49,9 @@ export const Reclaim = (player: Player, kitName: string, status?: string) => {
                 const items = KitData.items
 
                 //@ts-ignore
-                const inventory = player.getComponent('inventory').container
-        
+                const inventory: Container = player.getComponent('inventory').container
+                //@ts-ignore
+                const equipment: EntityEquipmentInventoryComponent = player.getComponent('equipment_inventory')
                 if (!isAdmin && (KitData.requiredTag && KitData.requiredTag !== 'noReqTag' && !player.hasTag(KitData.requiredTag)))
                     return ReclaimSelect(player, 'api.kits.errors.reclaim.noperms')
                 
@@ -79,10 +80,33 @@ export const Reclaim = (player: Player, kitName: string, status?: string) => {
                     return ReclaimSelect(player, 'api.kits.errors.reclaim.notenoughmoney')
                 if (!isAdmin && (KitData?.price && KitData?.price > 0 && money >= KitData?.price))
                     player.runCommandAsync(`scoreboard players remove @s ${EconomyObjective} ${KitData.price}`)
+
+                //Offhand check
+                if (KitData.offhand && equipment.getEquipment(EquipmentSlot.offhand))
+                    return ReclaimSelect(player, 'api.kits.errors.reclaim.insufficientslots')
                 
+                const armor = KitData.armor
+
+                //Armor check
+                if (armor.helmet && equipment.getEquipment(EquipmentSlot.head))
+                    return ReclaimSelect(player, 'api.kits.errors.reclaim.insufficientslots')
+                if (armor.chest && equipment.getEquipment(EquipmentSlot.chest))
+                    return ReclaimSelect(player, 'api.kits.errors.reclaim.insufficientslots')
+                if (armor.legs && equipment.getEquipment(EquipmentSlot.legs))
+                    return ReclaimSelect(player, 'api.kits.errors.reclaim.insufficientslots')
+                if (armor.feet && equipment.getEquipment(EquipmentSlot.feet))
+                    return ReclaimSelect(player, 'api.kits.errors.reclaim.insufficientslots')
+                
+                if (KitData.offhand) equipment.setEquipment(EquipmentSlot.offhand, newItem(KitData.offhand))
+                if (armor.helmet) equipment.setEquipment(EquipmentSlot.head, newItem(armor.helmet))
+                if (armor.chest) equipment.setEquipment(EquipmentSlot.chest, newItem(armor.chest))
+                if (armor.legs) equipment.setEquipment(EquipmentSlot.legs, newItem(armor.legs))
+                if (armor.feet) equipment.setEquipment(EquipmentSlot.feet, newItem(armor.feet))
+
                 for (const item of items) {
                     inventory.addItem(newItem(item))
                 }
+                
                 if (!isAdmin && KitData?.price > 0) {  
                     FormKit(player, translate('purchasedKitSucces', [kitName]))
                     return Script.emit('kitPurchased', {

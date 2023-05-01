@@ -13,12 +13,13 @@ Discord: Aex66#0202
 © Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours.
 Thank you
 */
-import { Player } from "@minecraft/server";
+import { EntityEquipmentInventoryComponent, EquipmentSlot, Player } from "@minecraft/server";
 import { ModalFormData } from "@minecraft/server-ui";
 import { MS } from "../../../extras/Converters.js";
 import { getItemData, ItemData } from "../../../extras/Utils.js";
 import Script from "../../../lib/Script.js";
 import { FormKit } from "./FormKit.js";
+import { armor } from "../../../types/index.js";
 export const Create = (player: Player, status?: string) => {
         const CreateForm = new ModalFormData()
         .title('api.kits.create.title')
@@ -64,8 +65,13 @@ export const Create = (player: Player, status?: string) => {
         if (Script.kits.has(name)) 
             return Create(player, 'api.kits.errors.create.alreadyexist')
         //@ts-ignore
-        const inventory = player.getComponent('inventory').container
-        const items: ItemData[] = []
+        const inventory = player.getComponent('inventory').container, equipment: EntityEquipmentInventoryComponent = player.getComponent('equipment_inventory')
+        const items: ItemData[] = [], offhand = getItemData(equipment.getEquipment(EquipmentSlot.offhand)), armor: armor = {
+            helmet: getItemData(equipment.getEquipment(EquipmentSlot.head)) ?? undefined,
+            chest: getItemData(equipment.getEquipment(EquipmentSlot.chest)) ?? undefined,
+            legs: getItemData(equipment.getEquipment(EquipmentSlot.legs)) ?? undefined,
+            feet: getItemData(equipment.getEquipment(EquipmentSlot.feet)) ?? undefined
+        }
         let itemCount = 0
     
         for (let i = 0; i<inventory.size; i++) {
@@ -75,7 +81,7 @@ export const Create = (player: Player, status?: string) => {
             itemCount++
             items.push(getItemData(item))
         }
-        if (!items.length) 
+        if (!items.length && !Object.keys(armor).some((k: keyof typeof armor) => armor[k]) && !offhand) 
             return Create(player, 'api.kits.errors.create.noitems')
         const data = {
             name,
@@ -86,6 +92,8 @@ export const Create = (player: Player, status?: string) => {
             onlyOnce: !onlyOnce ? false : onlyOnce,
             itemCount,
             items: items,
+            offhand: offhand ?? undefined,
+            armor,
             createdAt: new Date().toLocaleString()
         }
         Script.kits.write(name, data)

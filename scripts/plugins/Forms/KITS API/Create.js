@@ -1,3 +1,19 @@
+/*
+Developers:
+Aex66:
+Discord: Aex66#0202
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+           _____
+          /  _  \   ____ ___  ___
+         /  /_\  \_/ __ \\  \/  /
+        /    |    \  ___/ >    <
+        \____|__  /\___  >__/\_ \
+                \/     \/      \/
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+© Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours.
+Thank you
+*/
+import { EquipmentSlot } from "@minecraft/server";
 import { ModalFormData } from "@minecraft/server-ui";
 import { MS } from "../../../extras/Converters.js";
 import { getItemData } from "../../../extras/Utils.js";
@@ -13,6 +29,7 @@ export const Create = (player, status) => {
         .textField('api.kits.create.components.price.label', 'api.kits.create.components.price.placeholder', '0')
         .toggle('api.kits.create.components.onlyonce.label', false);
     CreateForm.show(player).then((res) => {
+        var _a, _b, _c, _d;
         if (res.canceled)
             return FormKit(player);
         const ms = Date.now();
@@ -28,8 +45,13 @@ export const Create = (player, status) => {
         if (Script.kits.has(name))
             return Create(player, 'api.kits.errors.create.alreadyexist');
         //@ts-ignore
-        const inventory = player.getComponent('inventory').container;
-        const items = [];
+        const inventory = player.getComponent('inventory').container, equipment = player.getComponent('equipment_inventory');
+        const items = [], offhand = getItemData(equipment.getEquipment(EquipmentSlot.offhand)), armor = {
+            helmet: (_a = getItemData(equipment.getEquipment(EquipmentSlot.head))) !== null && _a !== void 0 ? _a : undefined,
+            chest: (_b = getItemData(equipment.getEquipment(EquipmentSlot.chest))) !== null && _b !== void 0 ? _b : undefined,
+            legs: (_c = getItemData(equipment.getEquipment(EquipmentSlot.legs))) !== null && _c !== void 0 ? _c : undefined,
+            feet: (_d = getItemData(equipment.getEquipment(EquipmentSlot.feet))) !== null && _d !== void 0 ? _d : undefined
+        };
         let itemCount = 0;
         for (let i = 0; i < inventory.size; i++) {
             const item = inventory.getItem(i);
@@ -38,7 +60,7 @@ export const Create = (player, status) => {
             itemCount++;
             items.push(getItemData(item));
         }
-        if (!items.length)
+        if (!items.length && !Object.keys(armor).some((k) => armor[k]) && !offhand)
             return Create(player, 'api.kits.errors.create.noitems');
         const data = {
             name,
@@ -49,6 +71,8 @@ export const Create = (player, status) => {
             onlyOnce: !onlyOnce ? false : onlyOnce,
             itemCount,
             items: items,
+            offhand: offhand !== null && offhand !== void 0 ? offhand : undefined,
+            armor,
             createdAt: new Date().toLocaleString()
         };
         Script.kits.write(name, data);

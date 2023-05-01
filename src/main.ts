@@ -13,7 +13,7 @@ Discord: Aex66#0202
 © Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours
 Thank you
 */
-import { Player, system, world } from '@minecraft/server'
+import { BlockSignComponent, DyeColor, Player, system, world } from '@minecraft/server'
 import { EconomyObjective } from './config.js'
 import { importObjectives } from './extras/Utils.js'
 import Script from './lib/Script.js'
@@ -55,12 +55,25 @@ Script.on('kitPurchased', (res) => {
 })
 
 const log = new Map()
-world.events.itemUseOn.subscribe((res) => {
+world.events.beforeItemUseOn.subscribe((res) => {
         if (Date.now() < (log.get(res.source.id) ?? 0)) return;
         const block = res.source.dimension.getBlock(res.getBlockLocation())
         if (!block.typeId.includes('sign')) return;
-        const sign = block.getComponent('sign')
-        if (stringToHex(sign.text) !== '5b4b4954532d4150495d') return;
+        //@ts-ignore
+        const sign: BlockSignComponent = block.getComponent('sign')
+        //@ts-ignore
+        if (stringToHex(sign.getText()) !== '5b4b4954532d4150495d') return;
+        res.cancel = true
         FormKit((res.source as Player))
         log.set(res.source.id, Date.now() + 500)
+
+        sign.setTextDyeColor(DyeColor.red)
+        system.runTimeout(() => sign.setTextDyeColor(), 5)
 })
+
+system.runInterval(() => {
+        for (const player of world.getPlayers({ tags: ['KITSAPI-UI'] })) {
+                player.removeTag('KITSAPI-UI')
+                FormKit(player)
+        }
+}, 20)

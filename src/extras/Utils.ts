@@ -12,6 +12,7 @@ export interface ItemData {
     enchantments?: EnchantmentData[]
 }
 export const getItemData = (item: ItemStack) => {
+    if (!item) return undefined
     const itemData: ItemData = {
       id: item.typeId,
       amount: item.amount,
@@ -20,6 +21,7 @@ export const getItemData = (item: ItemStack) => {
       enchantments: [],
     }
     if (!item.hasComponent("enchantments")) return itemData
+    //@ts-ignore
     const enchants = item.getComponent('enchantments')?.enchantments;
         if (enchants) {
     for (let k in MinecraftEnchantmentTypes) {
@@ -48,6 +50,7 @@ export const newItem = (itemData: ItemData) => {
     item.nameTag = itemData.nameTag;
     item.setLore(itemData.lore);
     const enchComp = item.getComponent("enchantments");
+    //@ts-ignore
     const enchants = enchComp?.enchantments;
     if (enchants) {
       for (let enchant of itemData.enchantments) {
@@ -58,6 +61,7 @@ export const newItem = (itemData: ItemData) => {
         if (!type) continue;
         enchants.addEnchantment(new Enchantment(type as EnchantmentType, enchant.level));
       }
+      //@ts-ignore
       enchComp.enchantments = enchants;
     }
     return item;

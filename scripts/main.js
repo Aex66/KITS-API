@@ -13,7 +13,7 @@ Discord: Aex66#0202
 © Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours
 Thank you
 */
-import { system, world } from '@minecraft/server';
+import { DyeColor, system, world } from '@minecraft/server';
 import { EconomyObjective } from './config.js';
 import { importObjectives } from './extras/Utils.js';
 import Script from './lib/Script.js';
@@ -44,16 +44,27 @@ Script.on('kitPurchased', (res) => {
     //Fires when a kit is purchased
 });
 const log = new Map();
-world.events.itemUseOn.subscribe((res) => {
+world.events.beforeItemUseOn.subscribe((res) => {
     var _a;
     if (Date.now() < ((_a = log.get(res.source.id)) !== null && _a !== void 0 ? _a : 0))
         return;
     const block = res.source.dimension.getBlock(res.getBlockLocation());
     if (!block.typeId.includes('sign'))
         return;
+    //@ts-ignore
     const sign = block.getComponent('sign');
-    if (stringToHex(sign.text) !== '5b4b4954532d4150495d')
+    //@ts-ignore
+    if (stringToHex(sign.getText()) !== '5b4b4954532d4150495d')
         return;
+    res.cancel = true;
     FormKit(res.source);
     log.set(res.source.id, Date.now() + 500);
+    sign.setTextDyeColor(DyeColor.red);
+    system.runTimeout(() => sign.setTextDyeColor(), 5);
 });
+system.runInterval(() => {
+    for (const player of world.getPlayers({ tags: ['KITSAPI-UI'] })) {
+        player.removeTag('KITSAPI-UI');
+        FormKit(player);
+    }
+}, 20);

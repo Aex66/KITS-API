@@ -1,23 +1,23 @@
 {
     "format_version": 2,
     "header": {
-        "name": "KITS API v2.4",
+        "name": "KITS API v3.0",
         "description": "pack.description",
-        "uuid": "d1a9fa67-a35f-414d-b120-cdc6bdfc4913",
+        "uuid": "9ffb95ca-a759-45d0-b360-1c2ab49b2052",
         "version": [ 1, 0, 0 ],
         "min_engine_version": [ 1, 19, 50 ]
     },
     "modules": [
         {
             "type": "data",
-            "uuid": "e5f1e0eb-8ccd-4468-a1a3-c025fd062e97",
+            "uuid": "65b69e34-464f-41de-8f12-04aaf167875c",
             "version": [ 1, 0, 0 ]
         },
         {
             "description": "Javascript module",
             "type": "script", 
             "language": "javascript",
-            "uuid": "9775a0f4-9602-4cc4-b80c-4dacbac2fa7c",
+            "uuid": "cee21e44-249e-46eb-91b5-8b3b9acab0cc",
             "version": [ 0, 0, 1 ],
             "entry": "scripts/main.js"
         }
@@ -25,7 +25,7 @@
     "dependencies": [
         {
 			"module_name": "@minecraft/server",
-			"version": "1.1.0-beta"
+			"version": "1.2.0-beta"
 		},
 		{
 			"module_name": "@minecraft/server-ui",

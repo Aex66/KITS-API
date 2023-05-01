@@ -11,6 +11,12 @@ export type EventEmitterEvents = {
     'playerResponse': ModalFormResponse | ActionFormResponse;
 }
 
+export interface armor {
+  helmet?: ItemData;
+  chest?: ItemData;
+  legs?: ItemData;
+  feet?: ItemData;
+}
 export interface KitInformation {
     name: string;
     description: string;
@@ -20,6 +26,8 @@ export interface KitInformation {
     onlyOnce: boolean;
     itemCount: number;
     items: ItemData[];
+    offhand: ItemData;
+    armor: armor
     createdAt: string;
 }
 export class KitCreatedEvent {

@@ -12,7 +12,7 @@ export const View = (player: Player, KitName: string, status?: string) => {
 
     const ViewForm = new ActionFormData()
     .title(KitName)
-    .body(status ?? translate('viewDefaultStatusMsg', [KitName, KitData?.description, KitData?.requiredTag, String(KitData?.onlyOnce), KitData?.requiredTag, MS(KitData?.cooldown), String(KitData?.itemCount), KitData?.createdAt]))
+    .body(status ?? translate('viewDefaultStatusMsg', [KitName, KitData?.description, KitData?.requiredTag, String(KitData?.onlyOnce ? '§atrue' : 'false'), MS(KitData?.cooldown), String(KitData?.itemCount), (KitData.offhand ? '§atrue' : 'false'), (KitData.armor.helmet ? '§atrue' : 'false'), (KitData.armor.chest ? '§atrue' : 'false'), (KitData.armor.legs ? '§atrue' : 'false'), (KitData.armor.feet ? '§atrue' : 'false') ,KitData?.createdAt]))
     .button(
         'api.kits.view.components.exit.text',
         iconPaths.exit

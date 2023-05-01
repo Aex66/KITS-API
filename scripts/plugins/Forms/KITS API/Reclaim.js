@@ -13,7 +13,7 @@ Discord: Aex66#0202
 © Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours.
 Thank you
 */
-import { world } from "@minecraft/server";
+import { EquipmentSlot, world } from "@minecraft/server";
 import { EconomyObjective } from "../../../config.js";
 import { MS } from "../../../extras/Converters.js";
 import { translate } from "../../../extras/Lang.js";
@@ -41,6 +41,8 @@ export const Reclaim = (player, kitName, status) => {
                 const items = KitData.items;
                 //@ts-ignore
                 const inventory = player.getComponent('inventory').container;
+                //@ts-ignore
+                const equipment = player.getComponent('equipment_inventory');
                 if (!isAdmin && (KitData.requiredTag && KitData.requiredTag !== 'noReqTag' && !player.hasTag(KitData.requiredTag)))
                     return ReclaimSelect(player, 'api.kits.errors.reclaim.noperms');
                 const cooldown = (_b = Number((_a = player.getTags().find((tag) => tag.startsWith(`KA-Cooldown:${kitName}:`))) === null || _a === void 0 ? void 0 : _a.substring(12 + kitName.length + 1))) !== null && _b !== void 0 ? _b : null;
@@ -65,6 +67,29 @@ export const Reclaim = (player, kitName, status) => {
                     return ReclaimSelect(player, 'api.kits.errors.reclaim.notenoughmoney');
                 if (!isAdmin && ((KitData === null || KitData === void 0 ? void 0 : KitData.price) && (KitData === null || KitData === void 0 ? void 0 : KitData.price) > 0 && money >= (KitData === null || KitData === void 0 ? void 0 : KitData.price)))
                     player.runCommandAsync(`scoreboard players remove @s ${EconomyObjective} ${KitData.price}`);
+                //Offhand check
+                if (KitData.offhand && equipment.getEquipment(EquipmentSlot.offhand))
+                    return ReclaimSelect(player, 'api.kits.errors.reclaim.insufficientslots');
+                const armor = KitData.armor;
+                //Armor check
+                if (armor.helmet && equipment.getEquipment(EquipmentSlot.head))
+                    return ReclaimSelect(player, 'api.kits.errors.reclaim.insufficientslots');
+                if (armor.chest && equipment.getEquipment(EquipmentSlot.chest))
+                    return ReclaimSelect(player, 'api.kits.errors.reclaim.insufficientslots');
+                if (armor.legs && equipment.getEquipment(EquipmentSlot.legs))
+                    return ReclaimSelect(player, 'api.kits.errors.reclaim.insufficientslots');
+                if (armor.feet && equipment.getEquipment(EquipmentSlot.feet))
+                    return ReclaimSelect(player, 'api.kits.errors.reclaim.insufficientslots');
+                if (KitData.offhand)
+                    equipment.setEquipment(EquipmentSlot.offhand, newItem(KitData.offhand));
+                if (armor.helmet)
+                    equipment.setEquipment(EquipmentSlot.head, newItem(armor.helmet));
+                if (armor.chest)
+                    equipment.setEquipment(EquipmentSlot.chest, newItem(armor.chest));
+                if (armor.legs)
+                    equipment.setEquipment(EquipmentSlot.legs, newItem(armor.legs));
+                if (armor.feet)
+                    equipment.setEquipment(EquipmentSlot.feet, newItem(armor.feet));
                 for (const item of items) {
                     inventory.addItem(newItem(item));
                 }

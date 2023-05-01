@@ -1,6 +1,8 @@
 import { ItemStack, MinecraftEnchantmentTypes, Items, Enchantment, world } from "@minecraft/server";
 export const getItemData = (item) => {
     var _a;
+    if (!item)
+        return undefined;
     const itemData = {
         id: item.typeId,
         amount: item.amount,
@@ -10,6 +12,7 @@ export const getItemData = (item) => {
     };
     if (!item.hasComponent("enchantments"))
         return itemData;
+    //@ts-ignore
     const enchants = (_a = item.getComponent('enchantments')) === null || _a === void 0 ? void 0 : _a.enchantments;
     if (enchants) {
         for (let k in MinecraftEnchantmentTypes) {
@@ -35,6 +38,7 @@ export const newItem = (itemData) => {
     item.nameTag = itemData.nameTag;
     item.setLore(itemData.lore);
     const enchComp = item.getComponent("enchantments");
+    //@ts-ignore
     const enchants = enchComp === null || enchComp === void 0 ? void 0 : enchComp.enchantments;
     if (enchants) {
         for (let enchant of itemData.enchantments) {
@@ -46,6 +50,7 @@ export const newItem = (itemData) => {
                 continue;
             enchants.addEnchantment(new Enchantment(type, enchant.level));
         }
+        //@ts-ignore
         enchComp.enchantments = enchants;
     }
     return item;
