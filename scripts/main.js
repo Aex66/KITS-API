@@ -10,10 +10,10 @@ Discord: Aex66#0202
         \____|__  /\___  >__/\_ \
                 \/     \/      \/
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-© Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours
+© Copyright 2023 all rights reserved. Do NOT steal, copy the code, or claim it as yours
 Thank you
 */
-import { DyeColor, system, world } from '@minecraft/server';
+import { DyeColor, Player, system, world } from '@minecraft/server';
 import { EconomyObjective } from './config.js';
 import { importObjectives } from './extras/Utils.js';
 import Script from './lib/Script.js';
@@ -43,22 +43,20 @@ Script.on('kitClaimed', (res) => {
 Script.on('kitPurchased', (res) => {
     //Fires when a kit is purchased
 });
-const log = new Map();
-world.events.beforeItemUseOn.subscribe((res) => {
-    var _a;
-    if (Date.now() < ((_a = log.get(res.source.id)) !== null && _a !== void 0 ? _a : 0))
+world.afterEvents.entityHit.subscribe((res) => {
+    const block = res.hitBlock;
+    if (!block)
         return;
-    const block = res.source.dimension.getBlock(res.getBlockLocation());
+    if (!res.entity || !(res.entity instanceof Player))
+        return;
     if (!block.typeId.includes('sign'))
         return;
-    //@ts-ignore
+    const { entity: source } = res;
     const sign = block.getComponent('sign');
-    //@ts-ignore
     if (stringToHex(sign.getText()) !== '5b4b4954532d4150495d')
         return;
-    res.cancel = true;
-    FormKit(res.source);
-    log.set(res.source.id, Date.now() + 500);
+    sign.setWaxed();
+    FormKit(source);
     sign.setTextDyeColor(DyeColor.red);
     system.runTimeout(() => sign.setTextDyeColor(), 5);
 });

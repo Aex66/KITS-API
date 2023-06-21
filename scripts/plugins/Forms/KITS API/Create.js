@@ -10,7 +10,7 @@ Discord: Aex66#0202
         \____|__  /\___  >__/\_ \
                 \/     \/      \/
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-© Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours.
+© Copyright 2023 all rights reserved. Do NOT steal, copy the code, or claim it as yours.
 Thank you
 */
 import { EquipmentSlot } from "@minecraft/server";
@@ -83,5 +83,5 @@ export const Create = (player, status) => {
             kitData: data,
             executionTime: Date.now() - ms + 'ms'
         });
-    });
+    }).catch((r) => console.warn(r, r.stack));
 };

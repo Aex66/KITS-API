@@ -10,7 +10,7 @@ Discord: Aex66#0202
         \____|__  /\___  >__/\_ \
                 \/     \/      \/
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-© Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours.
+© Copyright 2023 all rights reserved. Do NOT steal, copy the code, or claim it as yours.
 Thank you
 */
 import { Container, EntityEquipmentInventoryComponent, EntityInventoryComponent, EquipmentSlot, Player, world } from "@minecraft/server";
@@ -73,7 +73,7 @@ export const Reclaim = (player: Player, kitName: string, status?: string) => {
                 
                 let money = 0;
                 try {
-                    money = world.scoreboard.getObjective(EconomyObjective).getScore(player.scoreboard)
+                    money = world.scoreboard.getObjective(EconomyObjective).getScore(player.scoreboardIdentity)
                 } catch {}
 
                 if (!isAdmin && (KitData?.price && KitData?.price > 0 && money < KitData?.price))

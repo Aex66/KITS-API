@@ -10,7 +10,7 @@ Discord: Aex66#0202
         \____|__  /\___  >__/\_ \
                 \/     \/      \/
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-© Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours.
+© Copyright 2023 all rights reserved. Do NOT steal, copy the code, or claim it as yours.
 Thank you
 */
 import { EquipmentSlot, world } from "@minecraft/server";
@@ -60,7 +60,7 @@ export const Reclaim = (player, kitName, status) => {
                     return ReclaimSelect(player, 'api.kits.errors.reclaim.insufficientslots');
                 let money = 0;
                 try {
-                    money = world.scoreboard.getObjective(EconomyObjective).getScore(player.scoreboard);
+                    money = world.scoreboard.getObjective(EconomyObjective).getScore(player.scoreboardIdentity);
                 }
                 catch (_c) { }
                 if (!isAdmin && ((KitData === null || KitData === void 0 ? void 0 : KitData.price) && (KitData === null || KitData === void 0 ? void 0 : KitData.price) > 0 && money < (KitData === null || KitData === void 0 ? void 0 : KitData.price)))

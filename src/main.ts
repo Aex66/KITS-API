@@ -10,7 +10,7 @@ Discord: Aex66#0202
         \____|__  /\___  >__/\_ \
                 \/     \/      \/
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-© Copyright 2022 all rights reserved. Do NOT steal, copy the code, or claim it as yours
+© Copyright 2023 all rights reserved. Do NOT steal, copy the code, or claim it as yours
 Thank you
 */
 import { BlockSignComponent, DyeColor, Player, system, world } from '@minecraft/server'
@@ -20,7 +20,7 @@ import Script from './lib/Script.js'
 import './plugins/commands/import.js'
 import { stringToHex } from './extras/Converters.js'
 import { FormKit } from './plugins/Forms/KITS API/FormKit.js'
-
+import { ModalFormData } from '@minecraft/server-ui'
 importObjectives(
         [
                 {
@@ -54,19 +54,21 @@ Script.on('kitPurchased', (res) => {
         //Fires when a kit is purchased
 })
 
-const log = new Map()
-world.events.beforeItemUseOn.subscribe((res) => {
-        if (Date.now() < (log.get(res.source.id) ?? 0)) return;
-        const block = res.source.dimension.getBlock(res.getBlockLocation())
-        if (!block.typeId.includes('sign')) return;
-        //@ts-ignore
-        const sign: BlockSignComponent = block.getComponent('sign')
-        //@ts-ignore
-        if (stringToHex(sign.getText()) !== '5b4b4954532d4150495d') return;
-        res.cancel = true
-        FormKit((res.source as Player))
-        log.set(res.source.id, Date.now() + 500)
+world.afterEvents.entityHit.subscribe((res) => {
+        const block = res.hitBlock
+        if (!block) return;
+        if (!res.entity || !(res.entity instanceof Player)) return;
 
+        if (!block.typeId.includes('sign')) return;
+
+        const { entity: source } = res
+
+        const sign: BlockSignComponent = block.getComponent('sign') as BlockSignComponent
+        
+        if (stringToHex(sign.getText()) !== '5b4b4954532d4150495d') return;
+
+        sign.setWaxed()
+        FormKit((source as Player)) 
         sign.setTextDyeColor(DyeColor.red)
         system.runTimeout(() => sign.setTextDyeColor(), 5)
 })

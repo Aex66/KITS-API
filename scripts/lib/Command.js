@@ -1,3 +1,4 @@
+import { system } from "@minecraft/server";
 import { world } from "@minecraft/server";
 import Script from "./Script";
 const commandPrefix = Script.prefix;
@@ -67,19 +68,20 @@ class Command {
 }
 Command.rC = [];
 export { Command };
-world.events.beforeChat.subscribe(data => {
+world.beforeEvents.chatSend.subscribe(data => {
+    const sender = [data.sender].flat()[0], message = [data.message].flat()[0];
     if (data.message.startsWith(commandPrefix)) {
         data.cancel = true;
         const now = Date.now();
-        const args = Command.getArgs(data.message);
+        const args = Command.getArgs(message);
         const cM = args.shift();
         const cD = Command.getCommand(cM);
         if (!cD)
-            return data.sender.sendMessage(`§cThe command §e${cM} §cdoes not exist.`);
-        if (cD.admin && !data.sender.hasTag(adminTag))
-            return data.sender.sendMessage(`§cYou do not have permission to run that command!`);
+            return sender.sendMessage(`§cThe command §e${cM} §cdoes not exist.`);
+        if (cD.admin && !sender.hasTag(adminTag))
+            return sender.sendMessage(`§cYou do not have permission to run that command!`);
         try {
-            cD.callback(data.sender, args, `${Date.now() - now}ms`);
+            system.run(() => cD.callback(sender, args, `${Date.now() - now}ms`));
         }
         catch (error) {
             console.warn(`§cAN ERROR OCURRED WHILE TRYING TO EXECUTE COMMAND CALLBACK AT:\n` + error, error.stack);

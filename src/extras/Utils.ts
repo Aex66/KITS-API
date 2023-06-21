@@ -1,4 +1,5 @@
-import { EnchantmentType, ItemStack, MinecraftEnchantmentTypes, Items, Enchantment, world, Player } from "@minecraft/server";
+import { EnchantmentType, ItemTypes, Enchantment, ItemStack, world, Player, EnchantmentList } from "@minecraft/server";
+import { MinecraftEnchantmentTypes } from "../mojang-data/mojang-enchantment";
 
 interface EnchantmentData {
     id: string;
@@ -22,17 +23,17 @@ export const getItemData = (item: ItemStack) => {
     }
     if (!item.hasComponent("enchantments")) return itemData
     //@ts-ignore
-    const enchants = item.getComponent('enchantments')?.enchantments;
-        if (enchants) {
-    for (let k in MinecraftEnchantmentTypes) {
-        const type: EnchantmentType | MinecraftEnchantmentTypes = MinecraftEnchantmentTypes[k as keyof typeof MinecraftEnchantmentTypes]
-        if (!enchants.hasEnchantment(type as EnchantmentType)) continue;
-        const enchant = enchants.getEnchantment(type as EnchantmentType);
-        itemData.enchantments.push({
-          id: enchant.type.id,
-          level: enchant.level,
-        });
-      }
+    const enchants = item.getComponent('enchantments').enchantments as EnchantmentList
+    if (enchants) {
+      for (let k in MinecraftEnchantmentTypes) {
+        const type = MinecraftEnchantmentTypes[k as keyof typeof MinecraftEnchantmentTypes]
+          if (!enchants.hasEnchantment(type)) continue;
+          const enchant = enchants.getEnchantment(type);
+          itemData.enchantments.push({
+            id: enchant.type.id,
+            level: enchant.level,
+          });
+        }
     }
     return itemData;
 }
@@ -44,7 +45,7 @@ export const getItemData = (item: ItemStack) => {
 */
 export const newItem = (itemData: ItemData) => {
     const item = new ItemStack(
-      Items.get(itemData.id),
+      ItemTypes.get(itemData.id),
       itemData.amount,
     );
     item.nameTag = itemData.nameTag;
@@ -54,12 +55,11 @@ export const newItem = (itemData: ItemData) => {
     const enchants = enchComp?.enchantments;
     if (enchants) {
       for (let enchant of itemData.enchantments) {
-        const key = enchant.id
+        const type = enchant.id
           .replace("minecraft:", "")
           .replace(/_(.)/g, (match) => match[1].toUpperCase());
-        const type = MinecraftEnchantmentTypes[key as keyof typeof MinecraftEnchantmentTypes];
         if (!type) continue;
-        enchants.addEnchantment(new Enchantment(type as EnchantmentType, enchant.level));
+        enchants.addEnchantment(new Enchantment(type, enchant.level));
       }
       //@ts-ignore
       enchComp.enchantments = enchants;

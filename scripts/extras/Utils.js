@@ -1,6 +1,6 @@
-import { ItemStack, MinecraftEnchantmentTypes, Items, Enchantment, world } from "@minecraft/server";
+import { ItemTypes, Enchantment, ItemStack, world } from "@minecraft/server";
+import { MinecraftEnchantmentTypes } from "../mojang-data/mojang-enchantment";
 export const getItemData = (item) => {
-    var _a;
     if (!item)
         return undefined;
     const itemData = {
@@ -13,7 +13,7 @@ export const getItemData = (item) => {
     if (!item.hasComponent("enchantments"))
         return itemData;
     //@ts-ignore
-    const enchants = (_a = item.getComponent('enchantments')) === null || _a === void 0 ? void 0 : _a.enchantments;
+    const enchants = item.getComponent('enchantments').enchantments;
     if (enchants) {
         for (let k in MinecraftEnchantmentTypes) {
             const type = MinecraftEnchantmentTypes[k];
@@ -34,7 +34,7 @@ export const getItemData = (item) => {
    * @returns {itemStack}
 */
 export const newItem = (itemData) => {
-    const item = new ItemStack(Items.get(itemData.id), itemData.amount);
+    const item = new ItemStack(ItemTypes.get(itemData.id), itemData.amount);
     item.nameTag = itemData.nameTag;
     item.setLore(itemData.lore);
     const enchComp = item.getComponent("enchantments");
@@ -42,10 +42,9 @@ export const newItem = (itemData) => {
     const enchants = enchComp === null || enchComp === void 0 ? void 0 : enchComp.enchantments;
     if (enchants) {
         for (let enchant of itemData.enchantments) {
-            const key = enchant.id
+            const type = enchant.id
                 .replace("minecraft:", "")
                 .replace(/_(.)/g, (match) => match[1].toUpperCase());
-            const type = MinecraftEnchantmentTypes[key];
             if (!type)
                 continue;
             enchants.addEnchantment(new Enchantment(type, enchant.level));

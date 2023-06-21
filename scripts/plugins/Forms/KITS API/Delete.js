@@ -35,5 +35,5 @@ export const Delete = (player, status) => {
             KitData,
             executionTime: Date.now() - ms + 'ms'
         });
-    });
+    }).catch((r) => console.warn(r, r.stack));
 };
