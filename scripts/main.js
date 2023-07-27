@@ -26,7 +26,7 @@ importObjectives([
         displayName: EconomyObjective
     }
 ]);
-system.events.beforeWatchdogTerminate.subscribe(ev => ev.cancel = true);
+system.beforeEvents.watchdogTerminate.subscribe(ev => ev.cancel = true);
 system.run(() => world.getDimension('overworld').runCommandAsync(`scoreboard players add @a ${EconomyObjective} 0`));
 /**
  * KITS API EVENTS
@@ -43,21 +43,21 @@ Script.on('kitClaimed', (res) => {
 Script.on('kitPurchased', (res) => {
     //Fires when a kit is purchased
 });
-world.afterEvents.entityHit.subscribe((res) => {
+world.afterEvents.entityHitBlock.subscribe((res) => {
     const block = res.hitBlock;
     if (!block)
         return;
-    if (!res.entity || !(res.entity instanceof Player))
+    if (!res.damagingEntity || !(res.damagingEntity instanceof Player))
         return;
     if (!block.typeId.includes('sign'))
         return;
-    const { entity: source } = res;
+    const { damagingEntity: source } = res;
     const sign = block.getComponent('sign');
     if (stringToHex(sign.getText()) !== '5b4b4954532d4150495d')
         return;
     sign.setWaxed();
     FormKit(source);
-    sign.setTextDyeColor(DyeColor.red);
+    sign.setTextDyeColor(DyeColor.Red);
     system.runTimeout(() => sign.setTextDyeColor(), 5);
 });
 system.runInterval(() => {

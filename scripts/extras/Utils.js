@@ -73,3 +73,4 @@ export const removeAllCooldownTags = (player, kit) => {
         return player.getTags().filter(tag => tag.startsWith(`KA-Cooldown:${kit}:`)).forEach(tag => player.removeTag(tag));
     player.getTags().filter(tag => tag.startsWith(`KA-Cooldown:`)).forEach(tag => player.removeTag(tag));
 };
+//Blazed is gay

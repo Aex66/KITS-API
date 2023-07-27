@@ -20,7 +20,6 @@ import Script from './lib/Script.js'
 import './plugins/commands/import.js'
 import { stringToHex } from './extras/Converters.js'
 import { FormKit } from './plugins/Forms/KITS API/FormKit.js'
-import { ModalFormData } from '@minecraft/server-ui'
 importObjectives(
         [
                 {
@@ -30,7 +29,7 @@ importObjectives(
         ]
 )
 
-system.events.beforeWatchdogTerminate.subscribe(ev => ev.cancel = true)
+system.beforeEvents.watchdogTerminate.subscribe(ev => ev.cancel = true)
 
 system.run(() => world.getDimension('overworld').runCommandAsync(`scoreboard players add @a ${EconomyObjective} 0`))
 
@@ -54,14 +53,14 @@ Script.on('kitPurchased', (res) => {
         //Fires when a kit is purchased
 })
 
-world.afterEvents.entityHit.subscribe((res) => {
+world.afterEvents.entityHitBlock.subscribe((res) => {
         const block = res.hitBlock
         if (!block) return;
-        if (!res.entity || !(res.entity instanceof Player)) return;
+        if (!res.damagingEntity || !(res.damagingEntity instanceof Player)) return;
 
         if (!block.typeId.includes('sign')) return;
 
-        const { entity: source } = res
+        const { damagingEntity: source } = res
 
         const sign: BlockSignComponent = block.getComponent('sign') as BlockSignComponent
         
@@ -69,7 +68,7 @@ world.afterEvents.entityHit.subscribe((res) => {
 
         sign.setWaxed()
         FormKit((source as Player)) 
-        sign.setTextDyeColor(DyeColor.red)
+        sign.setTextDyeColor(DyeColor.Red)
         system.runTimeout(() => sign.setTextDyeColor(), 5)
 })
 
