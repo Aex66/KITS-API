@@ -44,7 +44,7 @@ If you have some knowledge in javascript or typescript, I will show you how you 
 
 # KITS API EVENTS 
 
-## kitCreated
+## KIT CREATED
 ```ts
 KitsApiEvents.on('create', (res) => {
     const { player, data } = res
@@ -54,7 +54,17 @@ KitsApiEvents.on('create', (res) => {
 ```
 This event will be triggered when a kit is successfully created. <br>
 
-## kitDeleted
+## KIT EDITED
+```ts
+KitsApiEvents.on('edit', (res) => {
+    const { player, newData } = res
+
+    world.sendMessage(`§a${player.name} edited the kit §b${newData.name}`)
+})
+```
+This event will be triggered when a kit is successfully edited. <br>
+
+## KIT DELETED
 ```ts
 KitsApiEvents.on('delete', (res) => {
     const { player, data } = res
@@ -64,7 +74,7 @@ KitsApiEvents.on('delete', (res) => {
 ```
 This event will be triggered when a kit is successfully deleted. <br>
 
-## kitClaimed
+## KIT CLAIMED
 ```ts
 KitsApiEvents.on('claim', (res) => {
     const { player, name } = res
@@ -74,7 +84,7 @@ KitsApiEvents.on('claim', (res) => {
 ```
 This event will be triggered when a kit is successfully claimed. <br>
 
-## kitPurchased
+## KIT PURCHASED
 ```ts
 KitsApiEvents.on('purchase', (res) => {
     const { player, name } = res
