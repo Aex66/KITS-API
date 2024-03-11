@@ -46,78 +46,44 @@ If you have some knowledge in javascript or typescript, I will show you how you 
 
 ## kitCreated
 ```ts
-Script.on('kitCreated', (res) => {
-   res.kitName
-   res.player
-   res.kitData
-   res.executionTime
+KitsApiEvents.on('create', (res) => {
+    const { player, data } = res
+
+    world.sendMessage(`§a${player.name} created the kit §b${data.name}`)
 })
 ```
 This event will be triggered when a kit is successfully created. <br>
-Propertys: <br>
--kitName: string (The name of the kit that has been created) <br>
--player: @minecraft/server.Player (The player who created the kit) <br>
--kitData: KitInformation (All the information of the kit that has been created. If you use the typescript version, all the properties are typed to make it easier for you.) <br>
--executionTime: string (Time it took to create the kit) <br><br>
 
 ## kitDeleted
 ```ts
-Script.on('kitDeleted', (res) => {
-   res.kitName
-   res.player
-   res.kitData
-   res.executionTime
+KitsApiEvents.on('delete', (res) => {
+    const { player, data } = res
+
+    world.sendMessage(`§a${player.name} deleted the kit §b${data.name}`)
 })
 ```
 This event will be triggered when a kit is successfully deleted. <br>
-Propertys: <br>
--kitName: string (The name of the kit that has been deleted) <br>
--player: @minecraft/server.Player (The player who deleted the kit) <br>
--kitData: KitInformation (All the information of the kit that has been deleted. If you use the typescript version, all the properties are typed to make it easier for you.) <br>
--executionTime: string (Time it took to delete the kit) <br><br>
 
 ## kitClaimed
 ```ts
-Script.on('kitClaimed', (res) => {
-   res.kitName
-   res.player
-   res.executionTime
+KitsApiEvents.on('claim', (res) => {
+    const { player, name } = res
+
+    world.sendMessage(`§a${player.name} claimed the kit §b${name}`)
 })
 ```
 This event will be triggered when a kit is successfully claimed. <br>
-Propertys: <br>
--kitName: string (The name of the kit that has been claimed) <br>
--player: @minecraft/server.Player (The player who claimed the kit) <br>
--executionTime: string (Time it took to send the kit to the player) <br><br>
 
 ## kitPurchased
 ```ts
-Script.on('kitPurchased', (res) => {
-   res.kitName
-   res.player
-   res.price
-   res.executionTime
+KitsApiEvents.on('purchase', (res) => {
+    const { player, name } = res
+
+    world.sendMessage(`§a${player.name} bought the kit §b${name}`)
 })
 ```
 This event will trigger when a kit is successfully purchased. <br>
-Propertys: <br>
--kitName: string (The name of the kit that has been purchased) <br>
--player: @minecraft/server.Player (The player who purchased the kit) <br>
--price: number (The price of the kit that has been purchased) <br>
--executionTime: string (Time it took to send the kit to the player) <br><br>
 
-**_EXAMPLE_** <br>
-```main.ts```
-```ts
-import { Location } from "@minecraft/server"
-import Script from './lib/Script.js'
-Script.on('kitCreated', (res) => {
-    const { x, y, z } = res.player.location
-    const entity = res.player.dimension.spawnEntity('minecraft:armor_stand', new Location(x, y, z))
-    entity.nameTag = `You have created the kit ${res.kitName} succesfully`
-    entity.kill()
-})
-```
 # Download
 <a href="https://www.mediafire.com/file/y6qmg6174es9wo6/KITS_API_v2.3.mcaddon/file" target="blank"><img align="center" src="https://cdn.worldvectorlogo.com/logos/mediafire-1-3.svg" height="50" /></a>
 
