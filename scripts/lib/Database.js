@@ -9,6 +9,8 @@ import Server from './Server.js';
 //CREDITS TO Mo9ses
 const memory = {};
 export class Database {
+    table;
+    fullName;
     constructor(table, identifier) {
         const id = identifier || 'DB';
         if ((id + table).length > 16)
@@ -16,7 +18,7 @@ export class Database {
         try {
             world.scoreboard.addObjective(id + table, '');
         }
-        catch (_a) { }
+        catch { }
         ;
         this.fullName = id + table;
         this.table = table;
@@ -47,8 +49,7 @@ export class Database {
      * @example .get('Test Key');
      */
     read(key) {
-        var _a;
-        if ((_a = memory[this.fullName][key]) === null || _a === void 0 ? void 0 : _a[1])
+        if (memory[this.fullName][key]?.[1])
             return memory[this.fullName][key][0];
         const scores = world.scoreboard.getObjective(this.fullName).getScores().filter(p => p.participant.displayName.startsWith(key) && p.score != 0).map(s => [parseInt(s.participant.displayName.replace(key, '')), s.score]).sort((a, b) => a[0] - b[0]).map(s => s[1]);
         if (!scores.length)

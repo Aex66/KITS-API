@@ -4,10 +4,11 @@ import { ActionFormResponse } from "../lib/Form/types/ActionForm/response.js";
 import { ModalFormResponse } from "../lib/Form/types/ModalForm/response.js";
 
 export type EventEmitterEvents = {
-    'kitCreated': KitCreatedEvent;
-    'kitDeleted': KitDeletedEvent;
-    'kitClaimed': KitClaimed;
-    'kitPurchased': KitPurchased;
+    'create': KitCreatedEvent;
+    'delete': KitDeletedEvent;
+    'claim': KitClaimed;
+    'purchase': KitPurchased;
+    'edit': KitEditedEvent;
     'playerResponse': ModalFormResponse | ActionFormResponse;
 }
 
@@ -19,11 +20,14 @@ export interface armor {
 }
 export interface KitInformation {
     name: string;
+    image: string;
+    slot: number;
     description: string;
-    requiredTag: string; 
+    tag: string; 
+    duration: string;
     cooldown: number;
     price: number;
-    onlyOnce: boolean;
+    once: boolean;
     itemCount: number;
     items: ItemData[];
     offhand: ItemData;
@@ -32,28 +36,39 @@ export interface KitInformation {
 }
 export class KitCreatedEvent {
     /**
-     * Name of the kit that has been created
-     */
-    readonly kitName: string
-    /**
      * The player who created the kit
      */
     readonly player: Player
     /**
      * The data of the kit that has been created
      */
-    readonly KitData: KitInformation
+    readonly data: KitInformation
     /**
      * Time it took to create the kit
      */
     readonly executionTime: string
 }
 
+export class KitEditedEvent {
+  /**
+   * The player who edited the kit
+   */
+  readonly player: Player
+  /**
+   * The new data of the kit that has been edited
+   */
+  readonly newData: KitInformation
+   /**
+   * The old data of the kit that has been edited
+   */
+   readonly oldData: KitInformation
+  /**
+   * Time it took to edit the kit
+   */
+  readonly executionTime: string
+}
+
 export class KitDeletedEvent {
-    /**
-     * Name of the kit that has been removed
-     */
-    readonly kitName: string
     /**
      * The player removed the kit
      */
@@ -61,7 +76,7 @@ export class KitDeletedEvent {
     /**
      * The data of the kit that has been removed
      */
-     readonly KitData: KitInformation
+     readonly data: KitInformation
     /**
      * Time it took to delete the kit
      */
@@ -72,7 +87,7 @@ export class KitClaimed {
     /**
      * Name of the kit that has been claimed
      */
-    readonly kitName: string
+    readonly name: string
     /**
       * The player who claimed the kit
       */
@@ -87,7 +102,7 @@ export class KitPurchased {
     /**
      * Name of the kit that has been purchased
      */
-    readonly kitName: string
+    readonly name: string
     /**
       * The player who purchased the kit
       */

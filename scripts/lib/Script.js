@@ -1,12 +1,12 @@
 import { Database } from "./Database.js";
 import { EventEmitter } from "./EventEmitter.js";
-class ScriptConstructor extends EventEmitter {
-    constructor() {
-        super(...arguments);
-        this.kits = new Database('KITS');
-        this.prefix = 'ka?';
-        this.adminTag = 'Admin';
-    }
+class ScriptConstructor {
+    kits = new Database('KITS');
+    prefix = 'ka?';
+    adminTag = 'Admin';
 }
+class Events extends EventEmitter {
+}
+const KitsApiEvents = new Events();
 const Script = new ScriptConstructor();
-export default Script;
+export { Script, KitsApiEvents };

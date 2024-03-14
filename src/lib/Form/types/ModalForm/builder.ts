@@ -128,6 +128,7 @@ export class ModalFormData extends EventEmitter {
                 player,
 			})
 			this.emit('playerResponse', ModalResponse)
+			//@ts-ignore
 			if (MojangResponse.cancelationReason === 'userBusy') {
 			    this.forceShow(user, callback)
 				if (!this.reShowed)

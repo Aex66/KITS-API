@@ -1,4 +1,8 @@
 export class ActionFormResponse {
+    components;
+    MojangResponse;
+    player;
+    form;
     constructor({ form, components, MojangResponse, player }) {
         this.MojangResponse = MojangResponse;
         this.components = components;

@@ -1,9 +1,10 @@
 import { system } from "@minecraft/server";
 import { world } from "@minecraft/server";
-import Script from "./Script";
+import { Script } from "./Script";
 const commandPrefix = Script.prefix;
 export const adminTag = Script.adminTag;
-class Command {
+export class Command {
+    static rC = [];
     /**
      * Register a new command!
      * @param {ICommandInfo} info Register info for the command
@@ -17,12 +18,11 @@ class Command {
      * })
      */
     constructor(info, callback) {
-        var _a, _b;
         Command.rC.push({
             name: info.name.toLowerCase(),
-            description: (_a = info === null || info === void 0 ? void 0 : info.description) !== null && _a !== void 0 ? _a : undefined,
-            aliases: (info === null || info === void 0 ? void 0 : info.aliases) ? info.aliases.map(alias => alias.toLowerCase()) : undefined,
-            admin: (_b = info === null || info === void 0 ? void 0 : info.admin) !== null && _b !== void 0 ? _b : undefined,
+            description: info?.description ?? undefined,
+            aliases: info?.aliases ? info.aliases.map(alias => alias.toLowerCase()) : undefined,
+            admin: info?.admin ?? undefined,
             callback
         });
     }
@@ -32,8 +32,7 @@ class Command {
      * @returns {}
      */
     static getCommand(cmdString) {
-        var _a;
-        return (_a = Command.rC.find(cmd => { var _a; return cmd.name === cmdString || ((_a = cmd === null || cmd === void 0 ? void 0 : cmd.aliases) === null || _a === void 0 ? void 0 : _a.includes(cmdString)); })) !== null && _a !== void 0 ? _a : undefined;
+        return Command.rC.find(cmd => cmd.name === cmdString || cmd?.aliases?.includes(cmdString)) ?? undefined;
     }
     /**
      * Get all stored commands
@@ -48,7 +47,7 @@ class Command {
      * @returns {boolean}
      */
     static exist(cmdString) {
-        return Command.rC.some(cmd => { var _a; return cmd.name === cmdString || ((_a = cmd.aliases) === null || _a === void 0 ? void 0 : _a.includes(cmdString)); });
+        return Command.rC.some(cmd => cmd.name === cmdString || cmd.aliases?.includes(cmdString));
     }
     /**
      * Get command arguments
@@ -66,8 +65,6 @@ class Command {
         return commandPrefix;
     }
 }
-Command.rC = [];
-export { Command };
 world.beforeEvents.chatSend.subscribe(data => {
     const sender = [data.sender].flat()[0], message = [data.message].flat()[0];
     if (data.message.startsWith(commandPrefix)) {

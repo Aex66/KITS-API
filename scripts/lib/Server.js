@@ -5,7 +5,6 @@ import { setTickInterval } from "../extras/Scheduling.js";
 */
 const commandQueue = [];
 setTickInterval(() => {
-    var _a;
     if (!commandQueue.length)
         return;
     const hundred = commandQueue.slice(0, 100);
@@ -13,7 +12,7 @@ setTickInterval(() => {
     for (let i = 0; i < 100; i++) {
         if (!hundred[i])
             return;
-        world.getDimension((_a = hundred[i][1]) !== null && _a !== void 0 ? _a : 'overworld').runCommandAsync(hundred[i][0]).catch();
+        world.getDimension(hundred[i][1] ?? 'overworld').runCommandAsync(hundred[i][0]).catch();
     }
 }, 5);
 class ServerBook {
@@ -36,7 +35,7 @@ class ServerBook {
     */
     async runCommand(command, dimension) {
         let value = '';
-        await world.getDimension(dimension !== null && dimension !== void 0 ? dimension : 'overworld').runCommandAsync(command).catch(e => value = e);
+        await world.getDimension(dimension ?? 'overworld').runCommandAsync(command).catch(e => value = e);
         return value;
     }
     /**

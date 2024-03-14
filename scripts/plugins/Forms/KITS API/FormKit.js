@@ -1,40 +1,32 @@
-import { iconPaths } from "../../../config.js";
-import Script from "../../../lib/Script.js";
+import { Script } from "../../../lib/Script.js";
 import { Create } from "./Create.js";
-import { Delete } from "./Delete.js";
-import { ReclaimSelect } from "./ReclaimSelect.js";
-import { ActionFormData } from "@minecraft/server-ui";
-import { ViewSelect } from "./ViewSelect.js";
+import { ActionFormData, FormCancelationReason } from "@minecraft/server-ui";
+import { kits } from "./Kits.js";
 export const FormKit = (player, status) => {
     const MainForm = new ActionFormData()
         .title('api.kits.main.title')
-        .body(status !== null && status !== void 0 ? status : 'api.kits.components.default');
+        .body(status ?? 'api.kits.components.default');
     const isAdmin = player.hasTag(Script.adminTag);
+    const buttons = [];
     if (isAdmin) {
-        MainForm.button('api.kits.main.components.create.text', iconPaths.create);
-        MainForm.button('api.kits.main.components.delete.text', iconPaths.delete);
-        MainForm.button('api.kits.main.components.view.text', iconPaths.view);
+        MainForm.button('api.kits.main.components.create.text');
+        buttons.push(`create`);
     }
-    MainForm.button('api.kits.main.components.reclaim.text', iconPaths.reclaim);
+    MainForm.button('KITS');
+    buttons.push(`kits`);
     MainForm.show(player).then((res) => {
-        if (res.canceled && res.cancelationReason === 'userBusy')
+        if (res.canceled && res.cancelationReason === FormCancelationReason.UserBusy)
             return (player.sendMessage({ rawtext: [{ translate: 'api.kits.chattimeout' }] }),
                 player.playSound('random.break'));
-        const button = res.selection;
-        switch (button) {
-            case 0:
+        const selected = buttons[res.selection];
+        switch (selected) {
+            case 'create':
                 if (!isAdmin)
-                    return ReclaimSelect(player);
+                    return kits(player);
                 Create(player);
                 break;
-            case 1:
-                Delete(player);
-                break;
-            case 2:
-                ViewSelect(player);
-                break;
-            case 3:
-                ReclaimSelect(player);
+            case 'kits':
+                kits(player);
                 break;
         }
     });

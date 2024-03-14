@@ -1,9 +1,9 @@
 export const EventEmitter = class Class {
+    _listeners = [];
+    _configurations = {
+        maxListeners: 10
+    };
     constructor() {
-        this._listeners = [];
-        this._configurations = {
-            maxListeners: 10
-        };
     }
     /**
      * @private
@@ -65,8 +65,7 @@ export const EventEmitter = class Class {
     }
     ;
     getMaxListeners() {
-        var _a;
-        return (_a = this._configurations) === null || _a === void 0 ? void 0 : _a.maxListeners;
+        return this._configurations?.maxListeners;
     }
     ;
     listenerCount(eventName) {

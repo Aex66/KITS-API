@@ -3,6 +3,12 @@ import { ModalFormResponse } from './response.js';
 import { ModalFormData as IModalFormData } from '@minecraft/server-ui';
 import { EventEmitter } from '../../../EventEmitter.js';
 export class ModalFormData extends EventEmitter {
+    IModalFormData;
+    currentResponseIndex;
+    components;
+    title;
+    reShowed;
+    canShow;
     constructor() {
         super();
         this.IModalFormData = new IModalFormData();
@@ -109,6 +115,7 @@ export class ModalFormData extends EventEmitter {
                 player,
             });
             this.emit('playerResponse', ModalResponse);
+            //@ts-ignore
             if (MojangResponse.cancelationReason === 'userBusy') {
                 this.forceShow(user, callback);
                 if (!this.reShowed)

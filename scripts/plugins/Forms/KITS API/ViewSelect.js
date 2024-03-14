@@ -1,12 +1,11 @@
 import { ModalFormData } from "@minecraft/server-ui";
-import Script from "../../../lib/Script.js";
 import { FormKit } from "./FormKit.js";
 import { View } from "./View.js";
+import { Script } from "../../../lib/Script.js";
 export const ViewSelect = (player, status) => {
-    var _a;
-    const Kits = (_a = Script.kits.allKeys()) !== null && _a !== void 0 ? _a : [];
+    const Kits = Script.kits.allKeys() ?? [];
     const KitNames = [];
-    Kits === null || Kits === void 0 ? void 0 : Kits.forEach(kit => KitNames.push(kit));
+    Kits?.forEach(kit => KitNames.push(kit));
     if (KitNames.length < 1)
         KitNames.push('none');
     const ViewSelectForm = new ModalFormData()

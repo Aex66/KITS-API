@@ -17,8 +17,8 @@ import { EquipmentSlot } from "@minecraft/server";
 import { ModalFormData } from "@minecraft/server-ui";
 import { MS } from "../../../extras/Converters.js";
 import { getItemData } from "../../../extras/Utils.js";
-import Script from "../../../lib/Script.js";
 import { FormKit } from "./FormKit.js";
+import { KitsApiEvents, Script } from "../../../lib/Script.js";
 export const Create = (player, status) => {
     const CreateForm = new ModalFormData()
         .title('api.kits.create.title')
@@ -27,30 +27,34 @@ export const Create = (player, status) => {
         .textField('api.kits.create.components.reqTag.label', 'tag')
         .textField('Cooldown', 'Cooldown')
         .textField('api.kits.create.components.price.label', 'api.kits.create.components.price.placeholder', '0')
+        .textField('Image:', 'minecraft:diamond')
+        .textField('Slot:', '0')
         .toggle('api.kits.create.components.onlyonce.label', false);
     CreateForm.show(player).then((res) => {
-        var _a, _b, _c, _d;
         if (res.canceled)
             return FormKit(player);
         const ms = Date.now();
-        let [name, desc, tag, duration, price, onlyOnce] = res.formValues;
+        let [name, desc, tag, duration, price, image, slot, onlyOnce] = res.formValues;
         let cooldown = MS(duration);
         price = Number(price);
+        slot = Number(slot);
         if (!desc)
             desc = 'UNDEFINED';
         if (!name)
             return Create(player, 'api.kits.errors.create.noname');
         if (isNaN(price))
             return Create(player, 'api.kits.errors.create.price.wrongsyntax');
+        if (isNaN(slot))
+            return Create(player, `§cThe slot must be a number`);
         if (Script.kits.has(name))
             return Create(player, 'api.kits.errors.create.alreadyexist');
         //@ts-ignore
-        const inventory = player.getComponent('inventory').container, equipment = player.getComponent('equipment_inventory');
-        const items = [], offhand = getItemData(equipment.getEquipment(EquipmentSlot.offhand)), armor = {
-            helmet: (_a = getItemData(equipment.getEquipment(EquipmentSlot.head))) !== null && _a !== void 0 ? _a : undefined,
-            chest: (_b = getItemData(equipment.getEquipment(EquipmentSlot.chest))) !== null && _b !== void 0 ? _b : undefined,
-            legs: (_c = getItemData(equipment.getEquipment(EquipmentSlot.legs))) !== null && _c !== void 0 ? _c : undefined,
-            feet: (_d = getItemData(equipment.getEquipment(EquipmentSlot.feet))) !== null && _d !== void 0 ? _d : undefined
+        const inventory = player.getComponent('inventory').container, equipment = player.getComponent('equippable');
+        const items = [], offhand = getItemData(equipment.getEquipment(EquipmentSlot.Offhand)), armor = {
+            helmet: getItemData(equipment.getEquipment(EquipmentSlot.Head)) ?? undefined,
+            chest: getItemData(equipment.getEquipment(EquipmentSlot.Chest)) ?? undefined,
+            legs: getItemData(equipment.getEquipment(EquipmentSlot.Legs)) ?? undefined,
+            feet: getItemData(equipment.getEquipment(EquipmentSlot.Feet)) ?? undefined
         };
         let itemCount = 0;
         for (let i = 0; i < inventory.size; i++) {
@@ -64,23 +68,25 @@ export const Create = (player, status) => {
             return Create(player, 'api.kits.errors.create.noitems');
         const data = {
             name,
+            image: image ?? undefined,
+            slot: slot,
             description: desc,
-            requiredTag: !tag ? "noReqTag" : tag,
+            tag: !tag ? undefined : tag,
+            duration,
             cooldown: !cooldown ? 0 : cooldown,
             price,
-            onlyOnce: !onlyOnce ? false : onlyOnce,
+            once: !onlyOnce ? false : onlyOnce,
             itemCount,
             items: items,
-            offhand: offhand !== null && offhand !== void 0 ? offhand : undefined,
+            offhand: offhand ?? undefined,
             armor,
-            createdAt: new Date().toLocaleString()
+            createdAt: new Date().toDateString()
         };
         Script.kits.write(name, data);
         FormKit(player, 'api.kits.create.succes');
-        Script.emit('kitCreated', {
-            kitName: name,
+        KitsApiEvents.emit('create', {
             player: player,
-            kitData: data,
+            data: data,
             executionTime: Date.now() - ms + 'ms'
         });
     }).catch((r) => console.warn(r, r.stack));

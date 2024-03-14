@@ -1,5 +1,5 @@
-import { EnchantmentType, ItemTypes, Enchantment, ItemStack, world, Player, EnchantmentList } from "@minecraft/server";
-import { MinecraftEnchantmentTypes } from "../mojang-data/mojang-enchantment";
+import { ItemTypes, ItemStack, world, Player, EnchantmentType, EnchantmentTypes, ItemEnchantableComponent } from "@minecraft/server";
+const enchantmentList = ['aqua_affinity', 'bane_of_arthropods', 'binding', 'blast_protection', 'channeling', 'depth_strider', 'efficiency', 'feather_falling', 'fire_aspect', 'fire_protection', 'flame', 'fortune', 'frost_walker', 'impaling', 'infinity', 'knockback', 'looting', 'loyalty', 'luck_of_the_sea', 'lure', 'mending', 'multishot', 'piercing', 'power', 'projectile_protection', 'protection', 'punch', 'quick_charge', 'respiration', 'riptide', 'sharpness', 'silk_touch', 'smite', 'soul_speed', 'swift_sneak', 'thorns', 'unbreaking', 'vanishing']
 
 interface EnchantmentData {
     id: string;
@@ -21,20 +21,17 @@ export const getItemData = (item: ItemStack) => {
       lore: item.getLore(),
       enchantments: [],
     }
-    if (!item.hasComponent("enchantments")) return itemData
-    //@ts-ignore
-    const enchants = item.getComponent('enchantments').enchantments as EnchantmentList
-    if (enchants) {
-      for (let k in MinecraftEnchantmentTypes) {
-        const type = MinecraftEnchantmentTypes[k as keyof typeof MinecraftEnchantmentTypes]
-          if (!enchants.hasEnchantment(type)) continue;
-          const enchant = enchants.getEnchantment(type);
-          itemData.enchantments.push({
-            id: enchant.type.id,
+    if (!item.hasComponent("enchantable")) return itemData
+    const enchants = item.getComponent('minecraft:enchantable')
+    for(let k of enchantmentList) {
+        const type = EnchantmentTypes.get(k);
+        if (!type || !enchants.hasEnchantment(k)) continue;
+        const enchant = enchants.getEnchantment(type);
+        itemData.enchantments.push({
+            id: type.id,
             level: enchant.level,
-          });
-        }
-    }
+        });
+    } 
     return itemData;
 }
   
@@ -50,32 +47,27 @@ export const newItem = (itemData: ItemData) => {
     );
     item.nameTag = itemData.nameTag;
     item.setLore(itemData.lore);
-    const enchComp = item.getComponent("enchantments");
-    //@ts-ignore
-    const enchants = enchComp?.enchantments;
+
+    const enchComp = item.getComponent('minecraft:enchantable') as ItemEnchantableComponent,
+    enchants = enchComp?.getEnchantments();
     if (enchants) {
-      for (let enchant of itemData.enchantments) {
-        const type = enchant.id
-          .replace("minecraft:", "")
-          .replace(/_(.)/g, (match) => match[1].toUpperCase());
-        if (!type) continue;
-        enchants.addEnchantment(new Enchantment(type, enchant.level));
-      }
-      //@ts-ignore
-      enchComp.enchantments = enchants;
+        for (let enchant of itemData.enchantments) {
+            const type = EnchantmentTypes.get(enchant.id)
+            enchComp.addEnchantment({ type, level: enchant.level });
+        }
     }
-    return item;
+    return item
 }
 
 /**
  * Import not-existent objectives
  * @param {Array<{ id: string, displayName?: string}>} objectives 
  */
-export const importObjectives = async (objectives: Array<{ id: string, displayName?: string}>) => {
-  const f = objectives.filter(o => !world.scoreboard.getObjective(o.id))
+export const importObjectives = async (...objectives: string[]) => {
+  const f = objectives.filter(o => !world.scoreboard.getObjective(o))
   if (!f.length)
       return;
-  f.forEach(o => world.scoreboard.addObjective(o.id, o.displayName ?? o.id))
+  f.forEach(o => world.scoreboard.addObjective(o))
   console.warn("OBJECTIVES IMPORTED!")
 }
 

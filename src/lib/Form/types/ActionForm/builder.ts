@@ -80,7 +80,7 @@ export class ActionFormData extends EventEmitter {
 				MojangResponse,
                 player,
 			})
-			this.emit('playerResponse', ModalResponse)
+			this.emit('playerResponse', ModalResponse)//@ts-ignore
 			if (MojangResponse.cancelationReason === 'userBusy')
 			    this.show(user, callback)
 			if (!this.reShowed)

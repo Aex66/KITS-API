@@ -3,6 +3,12 @@ import { ActionFormResponse } from './response.js';
 import { ActionFormData as IActionFormData } from '@minecraft/server-ui';
 import { EventEmitter } from '../../../EventEmitter.js';
 export class ActionFormData extends EventEmitter {
+    IActionFormData;
+    currentResponseIndex;
+    components;
+    title;
+    body;
+    reShowed;
     constructor() {
         super();
         this.IActionFormData = new IActionFormData();
@@ -66,7 +72,7 @@ export class ActionFormData extends EventEmitter {
                 MojangResponse,
                 player,
             });
-            this.emit('playerResponse', ModalResponse);
+            this.emit('playerResponse', ModalResponse); //@ts-ignore
             if (MojangResponse.cancelationReason === 'userBusy')
                 this.show(user, callback);
             if (!this.reShowed)

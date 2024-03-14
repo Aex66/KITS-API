@@ -1,7 +1,7 @@
 import { Player, system } from "@minecraft/server";
 import { world } from "@minecraft/server";
 import { ICommandInfo } from "../types/Command";
-import Script from "./Script";
+import { Script } from "./Script";
 const commandPrefix = Script.prefix
 export const adminTag = Script.adminTag
 export class Command {
