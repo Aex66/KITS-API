@@ -24,8 +24,8 @@ export const _edit = (player, kit) => {
             desc = kit.description ?? undefined;
         if (price !== kit?.price && isNaN(price))
             return player.sendMessage({ translate: 'api.kits.errors.create.price.wrongsyntax' });
-        if (kit?.slot !== slot && isNaN(slot))
-            return player.sendMessage(`§cThe slot must be a number`);
+        if (kit?.slot !== slot && (isNaN(slot) || !Number.isInteger(Number(slot))))
+            return player.sendMessage(`§cThe slot must be an integer`);
         const data = {
             name: kit.name,
             image: image !== kit?.image ? image ? image : undefined : kit.image,
@@ -42,9 +42,7 @@ export const _edit = (player, kit) => {
             armor: kit.armor,
             createdAt: new Date().toLocaleString()
         };
-        console.warn(JSON.stringify(data));
         Script.kits.write(kit.name, data);
-        player.sendMessage(`§aSucces editing kit §r§e${kit.name}`);
         KitsApiEvents.emit('edit', {
             player: player,
             oldData: kit,

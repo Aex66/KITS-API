@@ -20,9 +20,9 @@ class ServerBook {
     * @param command The command you want to run
     * @param dimension The dimension you want the command run
     * @returns {string} command had error
-    * @example .commandQueue('say Hello World!');
+    * @example .queueCommand('say Hello World!');
     */
-    commandQueue(command: string, dimension?: string): void {
+    queueCommand(command: string, dimension?: string): void {
         commandQueue.push(dimension ? [command, dimension] : [command]);
     }
     /**

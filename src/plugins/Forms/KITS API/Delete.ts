@@ -39,8 +39,6 @@ export const _delete = (player: Player, kit: KitInformation) => {
 
         Script.kits.delete(kit.name)
 
-        player.sendMessage(`§aSucces deleting kit §r§e${kit.name}`)
-
         KitsApiEvents.emit('delete', {
             player: player,
             data: kit,

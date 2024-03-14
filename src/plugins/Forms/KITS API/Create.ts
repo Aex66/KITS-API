@@ -67,6 +67,7 @@ export const Create = (player: Player, status?: string) => {
         slot = Number(slot)
 
         if (!desc) desc = 'UNDEFINED'
+        if (desc.length > 105) return Create(player, `§cThe description is too long`)
         if (!name)
             return Create(player, 'api.kits.errors.create.noname')
         if (isNaN(price))
@@ -111,7 +112,6 @@ export const Create = (player: Player, status?: string) => {
             createdAt: new Date().toDateString()
         }
         Script.kits.write(name, data)
-        FormKit(player, 'api.kits.create.succes')
         KitsApiEvents.emit('create', {
             player: player,
             data: data,

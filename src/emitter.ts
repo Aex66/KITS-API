@@ -1,4 +1,3 @@
-import { world } from "@minecraft/server";
 import { KitsApiEvents } from "./lib/Script";
 
 /**
@@ -7,29 +6,29 @@ import { KitsApiEvents } from "./lib/Script";
 KitsApiEvents.on('create', (res) => {
     const { player, data } = res
 
-    world.sendMessage(`§a${player.name} created the kit §b${data.name}`)
+    player.sendMessage(`§aCreated the kit §b${data.name}`)
 })
 
 KitsApiEvents.on('delete', (res) => {
     const { player, data } = res
 
-    world.sendMessage(`§a${player.name} deleted the kit §b${data.name}`)
+    player.sendMessage(`§aDeleted the kit §b${data.name}`)
 })
 
 KitsApiEvents.on('claim', (res) => {
     const { player, name } = res
 
-    world.sendMessage(`§a${player.name} claimed the kit §b${name}`)
+    player.sendMessage(`§aClaimed the kit §b${name}`)
 })
 
 KitsApiEvents.on('purchase', (res) => {
     const { player, name } = res
 
-    world.sendMessage(`§a${player.name} bought the kit §b${name}`)
+    player.sendMessage(`§aBought the kit §b${name}`)
 })
 
 KitsApiEvents.on('edit', (res) => {
     const { player, newData } = res
 
-    world.sendMessage(`§a${player.name} edited the kit §b${newData.name}`)
+    player.sendMessage(`§aEdited the kit §b${newData.name}`)
 })
