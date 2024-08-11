@@ -1,4 +1,3 @@
-import { textToAscii, asciiToText } from '../extras/Converters.js';
 import { system, world } from '@minecraft/server';
 import Server from './Server.js';
 const release = 5;
@@ -150,6 +149,7 @@ class registry {
      * @returns {this}
      */
     shift(key, value) {
+        //@ts-ignore
         regMemory[this.file][0][key] = regMemory[this.file][0][key] + value ?? 1;
         Server.queueCommand(`scoreboard players add "${key}" "${this.file}" ${value}`);
         return this;
@@ -506,3 +506,15 @@ system.runInterval(() => {
         delete memory[table][key];
     }));
 }, 1200);
+/**
+* Convert string to hex
+* @param {string} text
+* @returns {number[]}
+*/ // @ts-ignore
+function textToAscii(text) { return text.split('').map(char => char.charCodeAt()); }
+/**
+* Convert hex to string
+* @param {number} hex
+* @returns {string}
+*/
+function asciiToText(hex) { return hex.map(char => String.fromCharCode(char)).join(''); }
